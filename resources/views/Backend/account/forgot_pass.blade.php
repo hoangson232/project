@@ -11,9 +11,9 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Nhận lại mật khẩu mới</p>
+    <p class="login-box-msg">Đề nghị nhập mail đã đăng ký để lấy mật khẩu mới</p>
 
-    <form action="" method="get">
+    <form action="" method="post">
       @csrf
       <div class="form-group has-feedback">
         <input type="email" class="form-control" name="email" placeholder="Email...">

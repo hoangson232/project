@@ -4,6 +4,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\http\Request;
 use Auth;
 use Illuminate\Support\Str;
+use Mail;
+use App\Models\Account;
 /**
  * 
  */
@@ -67,17 +69,65 @@ class AdminController extends Controller
 	 	}
 	 }
 
-	 public function forgot(Request $req){
-	 	if($req->email){
+	 public function showResetForm(){
+	 	return view('Backend.account.forgot_pass');
+	 }
+	 public function postResetForm(Request $req){
+	 if($req->email){
 	 		$this->validate($req,[
 	 			'email'=>'exists:account,email'
 	 		],[
 	 			'email.exists'=>'Email không tồn tại trong dữ liệu'
 	 		]);
+	 		$user=Account::where('email',$req->email)->first();
 	 		$token = Str::random(50);
-	 		
+	 		if (Account::where('email',$req->email)->update(['reset_token'=>$token])) {
+				$data=[
+				'email'=>$req->email,
+				'token' => $token,
+				'name'=>$user->name
+				];
+
+				$email=[
+				$data['email']
+				];
+
+				Mail::send('email.get-pass', $data, function ($message) use($data,$email) {
+			    $message->from('ph1906ij@gmail.com', 'Lezada');
+			
+			    $message->to($email, 'email.get-pass');
+			
+			    $message->subject('Quên mật khẩu?');
+				
+				});
+	 		}
+	 		return redirect()->route('login')->with('mess','Đã gửi mail xác nhận đến địa chỉ hòm thư của bạn, đề nghị kiểm tra hòm thư');
 	 	}
-	 	return view('Backend.account.forgot_pass');
+	 }
+	 public function reset($token){
+	 	$pass=Account::where('reset_token',$token)->first();
+	 	// dd($pass);
+	 	return view('Backend.account.reset_pass',compact('pass'));
+	 }
+
+	 public function post_reset($token,Request $req){
+	 	$this->validate($req,[
+	 		'new_password'=>'required',
+			'confirm_password'=>'required|same:new_password'
+	 	],[
+	 		'new_password.required'=>'Mật khẩu mới không được để rỗng',
+			'confirm_password.required'=>'Xác nhận mật khẩu không được để rỗng',
+			'confirm_password.same'=>'Xác nhận mật khẩu không chính xác',
+	 	]);
+	 	$user=Account::where('reset_token',$token)->first();
+	 	if(Account::where('reset_token',$token)->update([
+	 		'password'=>bcrypt($req->new_password),
+	 		'reset_token'=>''
+	 	])){
+	 		return redirect()->route('login')->with('mess','Đổi mật khẩu thành công, đăng nhập lại để tiếp tục');
+	 	}else{
+	 		return back()->with('error','Đổi mật khẩu không thành công');
+	 	}
 	 }
 }
 

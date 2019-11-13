@@ -59,6 +59,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Backend','middleware'=>'auth'],fun
 
 Route::get('admin/login','Backend\AdminController@login')->name('login');
 Route::post('admin/login','Backend\AdminController@post_login')->name('login');
-Route::get('admin/forgot_password','Backend\AdminController@forgot')->name('forgot_password');
+Route::get('admin/forgot_password','Backend\AdminController@showResetForm')->name('forgot_password');
+Route::post('admin/forgot_password','Backend\AdminController@postResetForm')->name('post_forgot_password');
+
+Route::get('admin/reset/{token}','Backend\AdminController@reset')->name('reset-pass');
+Route::post('admin/reset/{token}','Backend\AdminController@post_reset')->name('post-reset-pass');
 
 

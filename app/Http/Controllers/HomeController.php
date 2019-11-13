@@ -76,10 +76,10 @@ public function post_checkout(Request $req, CartHelper $cart){
 		$data['email'],
 		'hoangson232@gmail.com'
 	];
-	Mail::send('viewemail', $data, function ($message) use($data,$email) {
+	Mail::send('email.viewemail', $data, function ($message) use($data,$email) {
 	    $message->from('ph1906ij@gmail.com', 'Lezada');
 	
-	    $message->to($email, 'viewemail');
+	    $message->to($email, 'email.viewemail');
 	
 	    $message->subject('Xác nhận đơn hàng đã đặt');
 	

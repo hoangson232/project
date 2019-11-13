@@ -11,17 +11,11 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Thay đổi mật khẩu</p>
+    <p class="login-box-msg">Xin chào, {{$pass->name}},Đặt mật khẩu mới</p>
 
     <form action="" method="post">
       @csrf
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="old_password" placeholder="Mật khẩu cũ...">
-        <span class="glyphicon glyphicon-lock  form-control-feedback"></span>
-        @if($errors->has('old_password'))
-        {{$errors->first('old_password')}}
-        @endif
-      </div>
+     <input type="hidden" name="reset_token" value="">
       <div class="form-group has-feedback">
         <input type="password" class="form-control" name="new_password" placeholder="Mật khẩu mới...">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
