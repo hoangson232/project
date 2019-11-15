@@ -12,7 +12,14 @@
   <link rel="stylesheet" href="{{url('/public/admin')}}/css/AdminLTE.css">
   <link rel="stylesheet" href="{{url('/public/admin')}}/css/_all-skins.min.css">
   <link rel="stylesheet" href="{{url('/public/admin')}}/css/style.css" />
-  
+  <script type="text/javascript">
+    var base_url = function(){
+      return "{{url('')}}";
+    }
+    var akey = function(){
+      return 'JAVEgEj3qM6qspjXz7HvcMHyKubBWJXU2vxBcgMmXo';
+    }
+  </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -167,5 +174,7 @@
 <script src="{{url('/public/admin')}}/js/bootstrap.min.js"></script>
 <script src="{{url('/public/admin')}}/js/adminlte.min.js"></script>
 @yield('js')
+
+
 </body>
 </html>

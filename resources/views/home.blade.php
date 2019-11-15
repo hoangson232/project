@@ -188,9 +188,8 @@
                                         </div>
                                         
                                         <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="" href="{{route('pro_detail',['slug'=>$value->slug])}}" ><i class="ion-ios-search-strong"></i></a></span>
+                                            <span class="wishlist"><a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            <span class="quickview"><a class="" href="{{route('pro_detail',['slug'=>$value->slug])}}" data-tippy="Xem chi tiết" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-search-strong"></i></a></span>
                                         </div>
                                     </div>
                                     
@@ -201,7 +200,11 @@
                                     <div class="single-product__content">
                                         <div class="title">
                                             <h3> <a href="shop-product-basic.html">{{$value->name}}</a></h3>
+                                            @if(Auth::check())
                                             <a href="{{route('add-cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
+                                            @else
+                                            <a href="" onclick="return confirm('Bạn cần đăng nhập để mua hàng')">Thêm vào giỏ hàng</a>
+                                            @endif
                                         </div>
                                         <div class="price">
                                             @if($value->sale_price >0)

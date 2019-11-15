@@ -3,12 +3,12 @@ namespace App\Http\Controllers\Backend\product;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\ImgProduct;
+use App\Http\Controllers\Backend\Main_adminController;
 /**
  * 
  */
-class ProductController extends Controller
+class ProductController extends Main_adminController
 {
 	
 	public function index(Request $req){

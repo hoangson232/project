@@ -1,5 +1,28 @@
 @extends('master')
 @section('main')
+	<!--=======  breadcrumb area =======-->
+
+	<div class="breadcrumb-area breadcrumb-bg-1 pt-50 pb-70 mb-130">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="breadcrumb-title">Chi tiết sản phẩm</h1>
+
+					<!--=======  breadcrumb list  =======-->
+					
+						<ul class="breadcrumb-list">
+							<li class="breadcrumb-list__item"><a href="{{route('home')}}">Trang chủ</a></li>
+							<li class="breadcrumb-list__item breadcrumb-list__item--active">Chi tiết sản phẩm</li>
+						</ul>
+					
+					<!--=======  End of breadcrumb list  =======-->
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+    <!--=======  End of breadcrumb area =======-->
 <!--=============================================
     =            shop page content         =
     =============================================-->
@@ -26,10 +49,10 @@
 
 									<div class="shop-product-rightside-icons">
 										<span class="wishlist-icon">
-											<a href="#" data-tippy="Add to wishlist" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="ion-android-favorite-outline"></i></a>
+											<a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="ion-android-favorite-outline"></i></a>
 										</span>
 										<span class="enlarge-icon">
-											<a class="btn-zoom-popup" href="#" data-tippy="Click to enlarge" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="ion-android-expand"></i></a>
+											<a class="btn-zoom-popup" href="#" data-tippy="Nhấn để xem ảnh" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="ion-android-expand"></i></a>
 										</span>
 									</div>
 									
@@ -95,32 +118,7 @@
 								<!--=======  shop product description  =======-->
 								
 								<div class="shop-product__description">
-									<!--=======  shop product navigation  =======-->
-									
-									<div class="shop-product__navigation">
-										<a href="shop-product-basic.html"><i class="ion-ios-arrow-thin-left"></i></a>
-										<a href="shop-product-basic.html"><i class="ion-ios-arrow-thin-right"></i></a>
-									</div>
-									
-									<!--=======  End of shop product navigation  =======-->
-			
-									<!--=======  shop product rating  =======-->
-									
-									<div class="shop-product__rating mb-15">
-										<span class="product-rating">
-											<i class="active ion-android-star"></i>
-											<i class="active ion-android-star"></i>
-											<i class="active ion-android-star"></i>
-											<i class="active ion-android-star"></i>
-											<i class="ion-android-star-outline"></i>
-										</span>
-										
-										<span class="review-link ml-20">
-											<a href="#">(3 customer reviews)</a>
-										</span>
-									</div>
-									
-									<!--=======  End of shop product rating  =======-->
+
 
 									<!--=======  shop product title  =======-->
 									
@@ -150,41 +148,7 @@
 									</div>
 									
 									<!--=======  End of shop product short description  =======-->
-			
-									<!--=======  shop product size block  =======-->
-									
-									<div class="shop-product__block shop-product__block--size mb-20">
-										<div class="shop-product__block__title">Size: </div>
-										<div class="shop-product__block__value">
-											<div class="shop-product-size-list">
-												<span class="single-size">L</span>
-												<span class="single-size">M</span>
-												<span class="single-size">S</span>
-												<span class="single-size">XS</span>
-											</div>
-										</div>
-									</div>
-									
-									<!--=======  End of shop product size block  =======-->
-			
-									<!--=======  shop product color block  =======-->
-									
-									<div class="shop-product__block shop-product__block--color mb-20">
-										<div class="shop-product__block__title">Color: </div>
-										<div class="shop-product__block__value">
-											<div class="shop-product-color-list">
-			
-												<ul class="single-filter-widget--list single-filter-widget--list--color">
-													<li class="mb-0 pt-0 pb-0 mr-10"><a class="active" href="#"><span class="color-picker black"></span></a></li>
-													<li class="mb-0 pt-0 pb-0 mr-10"><a href="#"><span class="color-picker blue"></span></a></li>
-													<li class="mb-0 pt-0 pb-0 mr-10"><a href="#"><span class="color-picker brown"></span></a></li>
-													
-												</ul>
-											</div>
-										</div>
-									</div>
-									
-									<!--=======  End of shop product color block  =======-->
+		
 			
 									<!--=======  shop product quantity block  =======-->
 									
@@ -202,66 +166,15 @@
 									<!--=======  shop product buttons  =======-->
 									
 									<div class="shop-product__buttons mb-40">
+										@if(Auth::check())
 										<a class="lezada-button lezada-button--medium" href="{{route('add-cart',['id'=>$pro->id])}}">Thêm vào giỏ hàng</a>
-										<a class="lezada-compare-button ml-20" href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-placement="left" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="ion-ios-shuffle"></i></a>
+										@else
+										<a class="lezada-button lezada-button--medium" href="" onclick="return confirm('Bạn cần đăng nhập để mua hàng')">Thêm vào giỏ hàng</a>
+										@endif
 									</div>
 									
 									<!--=======  End of shop product buttons  =======-->
 			
-									<!--=======  shop product brands  =======-->
-									
-									<div class="shop-product__brands mb-20">
-			
-										<a href="#">
-											<img src="{{url('')}}/public/assets/images/brands/brand-1.png" class="img-fluid" alt="">
-										</a>
-			
-										<a href="#">
-											<img src="{{url('')}}/public/assets/images/brands/brand-2.png" class="img-fluid" alt="">
-										</a>
-			
-									</div>
-									
-									<!--=======  End of shop product brands  =======-->
-			
-									<!--=======  other info table  =======-->
-									
-									<div class="quick-view-other-info pb-0">
-										<table>
-											<tr class="single-info">
-												<td class="quickview-title">SKU: </td>
-												<td class="quickview-value">12345</td>
-											</tr>
-											<tr class="single-info">
-												<td class="quickview-title">Categories: </td>
-												<td class="quickview-value">
-													<a href="#">Fashion</a>, 
-													<a href="#">Men</a>,
-													<a href="#">Sunglasses</a> 
-												</td>
-											</tr>
-											<tr class="single-info">
-												<td class="quickview-title">Tags: </td>
-												<td class="quickview-value">
-													<a href="#">Fashion</a>, 
-													<a href="#">Men</a>
-												</td>
-											</tr>
-											<tr class="single-info">
-												<td class="quickview-title">Share on: </td>
-												<td class="quickview-value">
-													<ul class="quickview-social-icons">
-														<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-														<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-														<li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-														<li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-													</ul>
-												</td>
-											</tr>
-										</table>
-									</div>
-									
-									<!--=======  End of other info table  =======-->
 								</div>
 								
 								<!--=======  End of shop product description  =======-->

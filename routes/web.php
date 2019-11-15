@@ -24,9 +24,14 @@ Route::group(['prefix'=>'frontend'],function(){
 	Route::get('shop/{slug}','HomeController@shop')->name('shop');
 	Route::get('cus_login','HomeController@cus_login')->name('cus_login');
 	Route::post('cus_login','HomeController@post_login')->name('post_login');
+	Route::get('cus_logout','HomeController@cus_logout')->name('cus_logout');
 	Route::get('shop_checkout','HomeController@shop_checkout')->name('shop_checkout');
 	Route::post('shop_checkout','HomeController@post_checkout')->name('post_checkout');
 	Route::get('search_product','HomeController@search_product')->name('search_product');
+	Route::get('add','HomeController@add')->name('cus_account_add');
+	Route::post('add','HomeController@post_add')->name('cus_account_add');
+	Route::get('change_pass','HomeController@change_pass')->name('cus_change_pass');
+	Route::post('change_pass','HomeController@post_pass')->name('cus_change_pass');
 });
 
 
@@ -44,7 +49,7 @@ Route::group(['prefix'=>'cart'],function(){
 
 //phần Route admin
 Route::group(['prefix'=>'admin','namespace'=>'Backend','middleware'=>'auth'],function(){
-		Route::get('/','AdminController@index')->name('admin');
+		Route::get('/','Home_adminController@index')->name('admin');
 		Route::get('/logout','AdminController@logout')->name('user_logout');
 		Route::get('upfile','FileController@index')->name('upfile');
 		Route::post('upload','FileController@upload')->name('upload');

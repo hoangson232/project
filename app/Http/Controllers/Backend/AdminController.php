@@ -11,10 +11,6 @@ use App\Models\Account;
  */
 class AdminController extends Controller
 {
-	public function index(){
-	return view('Backend/index');
-	}
-	
 	public function login(){
 	return view ('Backend/login');
 	}
@@ -28,12 +24,17 @@ class AdminController extends Controller
 		'email.required'=>'Email không được để rỗng',
 		'password.required'=>'Password không được để rỗng'
 	]);
-	
-	if(Auth::attempt($request->only('email','password'),($request->has('remember')))){
-		return redirect()->route('admin')->with('mess','Chào mừng quay trở lại');
-		}
-	else { 
-		return redirect()->back()->with('error','Tài khoản không hợp lệ');
+		Auth::logout();
+		if(Auth::attempt($request->only('email','password'),($request->has('remember')))){
+			
+			if (Auth::user()->status==0) {
+				return redirect()->route('home');
+			}else{
+			return redirect()->route('admin')->with('mess','Chào mừng quay trở lại');
+			}
+			// return redirect()->route('admin')->with('mess','Chào mừng quay trở lại');
+		}else { 
+			return redirect()->back()->with('error','Tài khoản không hợp lệ');
 		}
 	}
 
@@ -101,7 +102,12 @@ class AdminController extends Controller
 				
 				});
 	 		}
-	 		return redirect()->route('login')->with('mess','Đã gửi mail xác nhận đến địa chỉ hòm thư của bạn, đề nghị kiểm tra hòm thư');
+	 		if ($user->status==1) {
+	 			return redirect()->route('login')->with('mess','Đã gửi mail xác nhận đến địa chỉ hòm thư của bạn, đề nghị kiểm tra hòm thư');
+	 		}else{
+	 			return redirect()->route('cus_login')->with('mess','Đã gửi mail xác nhận đến địa chỉ hòm thư của bạn, đề nghị kiểm tra hòm thư');
+	 		}
+	 		
 	 	}
 	 }
 	 public function reset($token){
@@ -124,9 +130,13 @@ class AdminController extends Controller
 	 		'password'=>bcrypt($req->new_password),
 	 		'reset_token'=>''
 	 	])){
+	 		if ($user->status==1) {
 	 		return redirect()->route('login')->with('mess','Đổi mật khẩu thành công, đăng nhập lại để tiếp tục');
+	 		}else{
+	 		return redirect()->route('cus_login')->with('mess','Đổi mật khẩu thành công, đăng nhập lại để tiếp tục');
+	 		}
 	 	}else{
-	 		return back()->with('error','Đổi mật khẩu không thành công');
+	 		return redirect()->route('home')->with('error','Đổi mật khẩu không thành công');
 	 	}
 	 }
 }

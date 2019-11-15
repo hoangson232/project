@@ -149,6 +149,7 @@
 												<li><a href="404.html">404</a></li>
 											</ul>
 										</li>
+
 										<li class="menu-item-has-children "><a href="javascript:void(0)">Tin tức</a>
 											<ul class="sub-menu single-column-menu single-column-has-children">
 												<li><a href="blog-standard-right-sidebar.html">Standard Layout</a>
@@ -195,6 +196,17 @@
 												</li>
 											</ul>
 										</li>
+										<li class="menu-item-has-children"><a href="javascript:void(0)">Tài khoản</a>
+											<ul class="sub-menu single-column-menu">
+												@if(Auth::check())
+												<li><a href="{{route('cus_change_pass')}}">Đổi mật khẩu</a></li>
+												<li><a href="{{route('cus_logout')}}" onclick= "return confirm('Bạn có chắc ko?')">Đăng xuất</a></li>
+												@else
+												<li><a href="{{route('cus_login')}}">Đăng nhập</a></li>
+												<li><a href="{{route('cus_account_add')}}">Đăng ký</a></li>
+												@endif
+											</ul>
+										</li>
 									</ul>
 								</nav>
 							</div>
@@ -203,12 +215,19 @@
 						<!--=======  End of header bottom navigation  =======-->
 
 						<!--=======  headeer right container  =======-->
+
 						
 						<div class="header-right-container">
 
 							<!--=======  header right icons  =======-->
+
 							
 							<div class="header-right-icons d-flex justify-content-end align-items-center h-100">
+								@if(Auth::check())
+								<div class="">									
+									<span>Xin chào: {{Auth::user()->name}}</span>
+								</div>
+								@endif
 								<!--=======  single-icon  =======-->
 								
 								<div class="single-icon search">
@@ -218,22 +237,8 @@
 								</div>
 								
 								<!--=======  End of single-icon  =======-->
-								<!--=======  single-icon  =======-->
 								
-								<div class="single-icon user-login">
-									<a href="{{route('cus_login')}}">
-										<i class="ion-android-person"></i>
-									</a>
-								</div>
-								
-								<!--=======  End of single-icon  =======-->
-								<!--=======  single-icon  =======-->
-								
-								<div class="single-icon user-login">
-									<span>{{Auth::user()->email}}</span>
-								</div>
-								
-								<!--=======  End of single-icon  =======-->
+									<!--=======  single-icon  =======-->
 								<!--=======  single-icon  =======-->
 								
 								<div class="single-icon wishlist">
@@ -360,7 +365,7 @@
                 <form action="{{route('search_product')}}" method="GET" class="form-inline" role="form">
                 
                 	<div class="form-group">
-                		<label class="sr-only" for="">label</label>
+                		<label class="sr-only" for="">Tìm kiếm</label>
                 		<input name="search" class="form-control" id="" placeholder="Nhập giá hoặc tên">
                 	</div>
                 

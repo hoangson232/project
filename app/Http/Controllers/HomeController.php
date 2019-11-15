@@ -9,6 +9,7 @@ use App\Helper\CartHelper;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use Mail;
+use App\Models\Account;
 /**
  * 
  */
@@ -34,9 +35,46 @@ public function shop($slug){
 	return view('frontend/shop',compact('product','cate'));
 
 	}
+
+public function add(){
+		return view('frontend/customer_register');
+	}
+	public function post_add(Request $request){
+		$this->validate($request,[
+		'name'=>'required',
+		'email'=>'required|email|unique:account,email',
+		'password'=>'required',
+		'confirm_password'=>'required|same:password',
+		'phone'=>'required',
+		'address'=>'required',
+		],
+		[
+		'name.required'=>'Tên tài khoản không được để rỗng',
+		'phone.required'=>'Số điện thoại không được để rỗng',
+		'address.required'=>'Địa chỉ không được để rỗng',
+		'password.required'=>'Mật khẩu không được để rỗng',
+		'confirm_password.required'=>'xác nhận mật khẩu không được để rỗng',
+		'confirm_password.same'=>'xác nhận mật khẩu không chính xác',
+		
+		'email.required'=>'email không được để rỗng',
+		'email.unique'=>'email đã có trong CSDL',
+		'email.email'=>'Nhập không đúng định dạng email',
+		]);
+		$password=bcrypt($request->password);
+		
+		$request->merge(['password'=>$password],['status'=>0]);
+		if(Account::create($request->all())){ 
+			return redirect()-> route('cus_login')-> with('mess','Đăng ký tài khoản thành công!');
+		}else{
+			return redirect()-> route('cus_account_add')-> with('mess','Đăng ký tài khoản xảy ra lỗi!');
+		}
+	}
+
 public function cus_login(){
+	Auth::logout();
 	return view('frontend/customer_login');
 	}
+
 public function post_login(Request $reg){
 	if (Auth::attempt($reg->only('email','password'),($reg->has('remember')))){
 		return redirect()->route('home');
@@ -44,7 +82,13 @@ public function post_login(Request $reg){
 	else{
 		return redirect()->back()->with('mess','Nhập không đúng hoặc tài khoản không tồn tại');
 	}
-	}
+}
+
+public function cus_logout(){
+	 	Auth::logout();
+	 	return redirect()->route('home'); 
+}
+
 
 public function shop_checkout(){
 	return view('shop_checkout');
@@ -88,6 +132,34 @@ public function post_checkout(Request $req, CartHelper $cart){
 	Session(['cart'=>[]]);
 	return redirect()->route('home')->with('mes','Chúc mừng bạn đã đặt hàng thành công!');
 	}	
+
+	public function change_pass(){
+	 	return view('Backend.account.change_pass');
+	 }
+
+	 public function post_pass(Request $req){
+	 	$this->validate($req,[
+	 		'old_password'=> 'required|check_old_pass',
+	 		'new_password'=>'required|different:old_password',
+			'confirm_password'=>'required|same:new_password'
+	 	],[
+	 		'old_password.required'=>'Chưa điền mật khẩu cũ',
+	 		'old_password.check_old_pass'=>'Mật khẩu cũ không đúng',
+	 		'new_password.required'=>'Mật khẩu mới không được để rỗng',
+	 		'new_password.different'=>'Mật khẩu mới không được giống mật khẩu cũ',
+			'confirm_password.required'=>'Xác nhận mật khẩu không được để rỗng',
+			'confirm_password.same'=>'Xác nhận mật khẩu không chính xác',
+	 	]);
+	 	if(Auth::user()->update([
+	 		'password'=>bcrypt($req->new_password)
+	 	])){
+	 		Auth::logout();
+	 		return redirect()->route('cus_login')->with('mess','Đổi mật khẩu thành công, đăng nhập lại để tiếp tục');
+	 	}else{
+	 		return back()->with('error','Đổi mật khẩu không thành công');
+	 	}
+	 }
+
 	public function search_product(Request $req){
 		$product=Product::where([
 			['status',1],

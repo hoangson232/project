@@ -3,11 +3,11 @@ namespace App\Http\Controllers\Backend\category;
 use App\Models\Category;
 
 use Illuminate\http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Backend\Main_adminController;
 /**
  * 
  */
-class DemoController extends Controller
+class DemoController extends Main_adminController
 {
 	public function index(){
 		return view('welcome');

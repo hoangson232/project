@@ -66,39 +66,9 @@
 
 								<div class="col-lg-12">
 									<input type="checkbox" > <span class="remember-text" name="remember">Remember me</span>
-									<a href="#" class="reset-pass-link">Lost your password?</a>
+									<a href="{{route('forgot_password')}}" class="reset-pass-link">Quên mật khẩu?</a>
+									<a href="{{route('cus_account_add')}}" class="reset-pass-link">Đăng ký người dùng</a>
 								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				<div class="col-lg-6">
-					<div class="lezada-form login-form--register">
-						<form action="#">
-							<div class="row">
-								<div class="col-lg-12">
-									<!--=======  login title  =======-->
-									
-									<div class="section-title section-title--login text-center mb-50">
-										<h2 class="mb-20">Register</h2>
-										<p>If you don’t have an account, register now!</p>
-									</div>
-									
-									<!--=======  End of login title  =======-->
-								</div>
-								<div class="col-lg-12 mb-30">
-									<label for="regEmail">Email Address <span class="required">*</span> </label>
-									<input type="text" id="regEmail" required>
-								</div>
-								<div class="col-lg-12 mb-50">
-									<label for="regPassword">Password <span class="required">*</span> </label>
-									<input type="password" id="regPassword"  required>
-								</div>
-								<div class="col-lg-12 text-center">
-									<button class="lezada-button lezada-button--medium">register</button>
-								</div>
-
-							
 							</div>
 						</form>
 					</div>

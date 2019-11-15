@@ -2,11 +2,12 @@
 namespace App\Http\Controllers\Backend;
 use App\Models\Account;
 use Illuminate\http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Backend\Main_adminController;
+
 /**
  * 
  */
-class AccountController extends Controller
+class AccountController extends Main_adminController
 {
 
 	public function index(){

@@ -33,29 +33,8 @@ tinymce.init({
     external_filemanager_path: base_url()+"/file/",
     external_plugins: { 
         "filemanager" : base_url()+"/file/plugin.min.js",
-        codemirror: base_url()+'/public/backend/tinymce/plugins/codemirror/plugin.js'
     },
-    filemanager_access_key:akey(),
-    codemirror: {
-        indentOnInit: true,
-        path: 'codemirror-4.8',
-        width: 800,         // Default value is 800
-        height: 450,        // Default value is 550
-        saveCursorPosition: true,   // Insert caret marker
-        config: {
-            // mode: 'application/x-httpd-php',
-            lineNumbers: true       
-        },
-        jsFiles: [          // Additional JS files to load
-           // 'mode/clike/clike.js',
-           // 'mode/php/php.js'
-        ],
-        cssFiles: [
-           'theme/base16-dark.css',
-           'theme/xq-dark.css',
-           // 'theme/elegant.css'
-        ]
-    },
+    filemanager_access_key:akey()
 });
 
 tinymce.init({
@@ -86,46 +65,3 @@ tinymce.init({
 	filemanager_access_key:akey(),
 
 });
-var thumb = $(".thumb");
-var remove = $(".remove-thumb");
-
-var mo_img = base_url()+'/public/images/no-ig.png';
-if (typeof old_img != 'undefined')
-{
-	mo_img = old_img !='' ? old_img : mo_img;
-    $('input.img-link').val(mo_img);
-    $('img.img-thumb').attr('src',mo_img);
-}
-
-thumb.on("click", function (e) {
-    e.preventDefault();
-    var field = $(this).data("field");
-    var view = $(this).data("view");
-    var src = base_url()+'/file/dialog.php?field_id='+field+'&akey='+akey();
-    var f = document.createElement('iframe');
-    f.style.width = "100%";
-    f.style.height = "500px";
-    f.style.border = "none";
-    f.style.overflowX = "none";
-    f.style.overflowY = "auto";
-    f.src = src;
-    
-    $('#modal-file .modal-body').html(f);
-    $('#modal-file').modal('show');
-    $('#modal-file').on('hide.bs.modal',function(){
-    	var img_srl = $('#'+field).val();
-    	$('img#'+view).attr('src',img_srl);
-    	// $('#modal-file .modal-body').html('');
-    });
-});	
-
-
-remove.on("click", function (e) {
-    e.preventDefault();
-    var field = $(this).data("field");
-    var view = $(this).data("view");
-    $('img#'+view).attr('src',mo_img);
-    $('#'+field).val(mo_img);
-    // $('#modal-file .modal-body').load('');
-});
-

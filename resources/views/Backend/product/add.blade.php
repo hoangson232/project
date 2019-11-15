@@ -3,7 +3,6 @@
 @section('main')
 <form action="" method="POST" role="form" enctype="multipart/form-data">
 	@csrf
-	<legend>Form add new</legend>
 
 	<div class="form-group">
 		<label for="">Tên sản phẩm</label>
@@ -54,7 +53,7 @@
 	</div>
 	<div class="form-group">
 		<label for="">Miêu tả sản phẩm</label>
-		<input type="text" class="form-control" name="description" id="" placeholder="Input name">
+		<textarea name="description" id="content" class="form-control"></textarea>
 	</div>
 	<div class="form-group">
 		<label for="">Trạng thái</label>
@@ -79,5 +78,8 @@
 @section('js')
 
 <script src="{{url('/public/admin')}}/js/slug.js"></script>
+<script src="{{url('/public/admin')}}/tinymce/tinymce.min.js"></script>
+<script src="{{url('/public/admin')}}/tinymce/config.js"></script>
+
 
 @stop()

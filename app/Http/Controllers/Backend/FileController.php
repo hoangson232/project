@@ -2,11 +2,11 @@
 namespace App\Http\Controllers\Backend;
 
 use Illuminate\http\Request;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\Backend\Main_adminController;
 /**
  * 
  */
-class FileController extends Controller
+class FileController extends Main_adminController
 {
 	public function index(){
 		return view('Backend/upfile');
