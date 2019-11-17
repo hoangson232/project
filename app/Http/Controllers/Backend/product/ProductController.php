@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Backend\product;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\OrderDetail;
 use Illuminate\http\Request;
 use App\Models\ImgProduct;
 use App\Http\Controllers\Backend\Main_adminController;
@@ -13,8 +14,8 @@ class ProductController extends Main_adminController
 	
 	public function index(Request $req){
 		$product= Product::paginate(3);
-		if ($req->search) {
-			$product= Product::where('name','like','%'.$req->search.'%')->paginate(3);
+		if ($req->pro_search) {
+			$product= Product::where('name','like','%'.$req->pro_search.'%')->paginate(3);
 		}
 		return view('Backend/product/list',compact('product'));
 	}
@@ -81,10 +82,17 @@ class ProductController extends Main_adminController
 
 	}
 	public function delete($id){
+		$order=OrderDetail::where('product_id',$id)->count();
+		$comment=Comment::where('product_id',$id)->count();
+		if ($order == 0 && $comment==0) {
 		ImgProduct::where('product_id',$id)->delete();
-		Product::find($id)->delete();
-
+		Product::find($id)->delete();	
 		return redirect()->back()->with('mes','Xóa thành công');//quay lại trang trước đó
+		}else{
+		return redirect()->back()->with('error','Xóa không thành công');
+		}
+
+		
 	}
 	public function add(){
 		$cate=Category::all();

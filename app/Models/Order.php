@@ -9,7 +9,7 @@ class Order extends Model
 {
 	protected $table = 'orders';
 
-	protected $fillable = ['name','email','phone','address','status','account_id'];	
+	protected $fillable = ['name','email','phone','address','status','account_id','total_price'];	
 
 	public function us(){
 		return $this->hasOne('App\Models\Account','id','account_id');

@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ImgProduct;
+use App\Models\Comment;
 use Auth;
 use Illuminate\http\Request;
 use App\Helper\CartHelper;
@@ -18,15 +19,40 @@ class HomeController extends Controller
 	
 public function index(){
 
-	$productNew = Product::where('status',1)-> orderBy('created_at','DESC')-> get();
+	$product = Product::where('status',1)
+			-> orderBy('created_at','ASC')-> get();
+	$productNew = Product::where('status',1)
+			-> orderBy('created_at','DESC') ->limit(4)-> get();
+	$productSale = Product::where('status',1)
+			->where('sale_price','>',0)
+			-> orderBy('created_at','DESC')-> get();
 	$category = Category::where('status',1)->orderBy('name','asc')->get();
-	return view('home',compact('productNew','category'));
+	return view('home',compact('product','category','productNew','productSale'));
 	}
 public function pro_detail($slug){
 	$pro=Product::where('slug',$slug)-> first();
 	$imgPro=ImgProduct::where('product_id',$pro->id)-> get();
-	return view('frontend/pro_detail',compact('pro','imgPro'));	
+	$show=Comment::where('product_id',$pro->id)->orderBy('created_at','desc')->get();
+	
+	return view('frontend/pro_detail',compact('pro','imgPro','show'));	
 	}
+
+
+public function add_comment(Request $req,$slug){
+	$pro=Product::where('slug',$slug)-> first();
+	$imgPro=ImgProduct::where('product_id',$pro->id)-> get();
+	$show=Comment::where('product_id',$pro->id)->orderBy('created_at','desc')->get();
+	$comment=Comment::create([
+		'comment'=>$req->comment,
+		'product_id'=>$pro->id,
+		'account_id'=>Auth::user()->id,
+		'status'=>1,
+	]);
+	$show=Comment::where('product_id',$pro->id)->orderBy('created_at','desc')->get();
+	return view('frontend/pro_detail',compact('pro','imgPro','show'));
+}
+
+
 public function shop($slug){
 	// $shop=Category::where('status',1)-> orderBy('name','ASC')-> get();
 	$cate= Category::where('slug',$slug)->first();
@@ -101,6 +127,7 @@ public function post_checkout(Request $req, CartHelper $cart){
 		'address'=>$req->address,
 		'email'=>$req->email,
 		'account_id'=>Auth::user()->id,
+		'total_price'=>$req->total_price,
 	]);
 	// dd($order->id);
 	foreach ($cart->items as $value) {

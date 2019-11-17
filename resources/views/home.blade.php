@@ -152,8 +152,8 @@
                     
                     <div class="tab-product-navigation mb-50">
                         <div class="nav nav-tabs justify-content-center" id="nav-tab2" role="tablist">
-                            <a class="nav-item nav-link active" id="product-tab-1" data-toggle="tab" href="#product-series-1" role="tab" aria-selected="true">mới về</a>
-                            <a class="nav-item nav-link" id="product-tab-2" data-toggle="tab" href="#product-series-2" role="tab" aria-selected="false">phổ biến</a>
+                            <a class="nav-item nav-link active " id="product-tab-1" data-toggle="tab" href="#product-series-1" role="tab" aria-selected="true">tất cả</a>
+                            <a class="nav-item nav-link " id="product-tab-2" data-toggle="tab" href="#product-series-2" role="tab" aria-selected="false">mới về</a>
                             <a class="nav-item nav-link" id="product-tab-3" data-toggle="tab" href="#product-series-3" role="tab" aria-selected="false">giảm giá</a>
                         </div>
                     </div>
@@ -171,7 +171,7 @@
                     <div class="tab-content"  id="nav-tabContent2">
                         <div class="tab-pane fade show active" id="product-series-1" role="tabpanel" aria-labelledby="product-tab-1">
                             <div class="row">
-                                @foreach($productNew as $value)
+                                @foreach($product as $value)
                                 <!--=======  single product  =======-->
                                 <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
                                     <div class="single-product">
@@ -183,9 +183,11 @@
                                             <img src="{{url('')}}/uploads/{{$value->image}}" class="img-fluid" alt="" width="100px">
                                         </a>
                 
+                                        @if($value->sale_price >0)
                                         <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
+                                            <span class="onsale">Sale</span>
                                         </div>
+                                        @endif
                                         
                                         <div class="single-product__floating-icons">
                                             <span class="wishlist"><a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
@@ -228,755 +230,116 @@
 
                         <div class="tab-pane fade" id="product-series-2" role="tabpanel" aria-labelledby="product-tab-2">
                             <div class="row">
-
+                                @foreach($productNew as $value)
                                 <!--=======  single product  =======-->
                                 <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                        <div class="single-product">
-                                        <!--=======  single product image  =======-->
-                                        
-                                        <div class="single-product__image">
-                                            <a class="image-wrap" href="shop-product-basic.html">
-                                                <img src="{{url('')}}/public/assets/images/products/furniture-7-1-600x800.jpg" class="img-fluid" alt="">
-                                                <img src="{{url('')}}/public/assets/images/products/furniture-7-2-600x800.jpg" class="img-fluid" alt="">
-                                            </a>
-                    
-                                            <div class="single-product__floating-badges">
-                                                <span class="onsale">-25%</span>
-                                            </div>
-                                            
-                                            <div class="single-product__floating-icons">
-                                                <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                                <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                                <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                            </div>
+                                    <div class="single-product">
+                                    <!--=======  single product image  =======-->
+                                    
+                                    <div class="single-product__image">
+                                        <a class="image-wrap" href="{{route('pro_detail',['slug'=>$value->slug])}}">
+                                            <img src="{{url('')}}/uploads/{{$value->image}}" class="img-fluid" alt="" width="100px">
+                                            <img src="{{url('')}}/uploads/{{$value->image}}" class="img-fluid" alt="" width="100px">
+                                        </a>
+                
+                                        @if($value->sale_price >0)
+                                        <div class="single-product__floating-badges">
+                                            <span class="onsale">Sale</span>
                                         </div>
+                                        @endif
                                         
-                                        <!--=======  End of single product image  =======-->
-                    
-                                        <!--=======  single product content  =======-->
+                                        <div class="single-product__floating-icons">
+                                            <span class="wishlist"><a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            <span class="quickview"><a class="" href="{{route('pro_detail',['slug'=>$value->slug])}}" data-tippy="Xem chi tiết" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-search-strong"></i></a></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!--=======  End of single product image  =======-->
+                
+                                    <!--=======  single product content  =======-->
+                            
+                                    <div class="single-product__content">
+                                        <div class="title">
+                                            <h3> <a href="shop-product-basic.html">{{$value->name}}</a></h3>
+                                            @if(Auth::check())
+                                            <a href="{{route('add-cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
+                                            @else
+                                            <a href="" onclick="return confirm('Bạn cần đăng nhập để mua hàng')">Thêm vào giỏ hàng</a>
+                                            @endif
+                                        </div>
+                                        <div class="price">
+                                            @if($value->sale_price >0)
+                                            <span class="main-price discounted">{{number_format($value->price)}} Đ</span>
+                                            <span class="discounted-price">{{number_format($value->sale_price)}} Đ</span>
+                                             @else 
+                                            <span class="main-price">{{number_format($value->price)}} Đ</span>
+                                             @endif
+                                        </div>
+                                    </div>
+                                    
+                                    <!--=======  End of single product content  =======-->
+                                    </div>
+                                </div>
+                                <!--=======  End of single product  =======-->
+                                @endforeach
                                 
-                                        <div class="single-product__content">
-                                            <div class="title">
-                                                <h3> <a href="shop-product-basic.html">Candle Inside Glass</a></h3>
-                                                <a href="#">Thêm vào giỏ hàng</a>
-                                            </div>
-                                            <div class="price">
-                                                <span class="main-price discounted">$360.00</span>
-                                                <span class="discounted-price">$300.00</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <!--=======  End of single product content  =======-->
-                                        </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-8-1-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-15%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a  class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Wooden Round Table</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$400.00</span>
-                                            <span class="discounted-price">$380.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-9-1-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Dining Chair</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">260.00</span>
-                                            <span class="discounted-price">$200.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-4-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-4-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Grey Tool</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$160.00</span>
-                                            <span class="discounted-price">$100.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-5-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-5-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-15%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a  class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Hanged Candle Holder</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$400.00</span>
-                                            <span class="discounted-price">$380.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-6-1-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Wooden Candle Holder</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price">$85.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-1-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-1-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-15%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a  class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Wooden Round Table</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$400.00</span>
-                                            <span class="discounted-price">$380.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-2-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-2-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Sofa with Cushion</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price">$85.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-3-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-3-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Green Coutch</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$360.00</span>
-                                            <span class="discounted-price">$300.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
                                 
                             </div>
                         </div>
 
                         <div class="tab-pane fade" id="product-series-3" role="tabpanel" aria-labelledby="product-tab-3">
                             <div class="row">
-
+                                @foreach($productSale as $value)
+                                <!--=======  single product  =======-->
+                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
+                                    <div class="single-product">
+                                    <!--=======  single product image  =======-->
+                                    
+                                    <div class="single-product__image">
+                                        <a class="image-wrap" href="{{route('pro_detail',['slug'=>$value->slug])}}">
+                                            <img src="{{url('')}}/uploads/{{$value->image}}" class="img-fluid" alt="" width="100px">
+                                            <img src="{{url('')}}/uploads/{{$value->image}}" class="img-fluid" alt="" width="100px">
+                                        </a>
+                                        @if($value->sale_price >0)
+                                        <div class="single-product__floating-badges">
+                                            <span class="onsale">Sale</span>
+                                        </div>
+                                        @endif
+                                        <div class="single-product__floating-icons">
+                                            <span class="wishlist"><a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            <span class="quickview"><a class="" href="{{route('pro_detail',['slug'=>$value->slug])}}" data-tippy="Xem chi tiết" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-search-strong"></i></a></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!--=======  End of single product image  =======-->
+                
+                                    <!--=======  single product content  =======-->
+                            
+                                    <div class="single-product__content">
+                                        <div class="title">
+                                            <h3> <a href="shop-product-basic.html">{{$value->name}}</a></h3>
+                                            @if(Auth::check())
+                                            <a href="{{route('add-cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
+                                            @else
+                                            <a href="" onclick="return confirm('Bạn cần đăng nhập để mua hàng')">Thêm vào giỏ hàng</a>
+                                            @endif
+                                        </div>
+                                        <div class="price">
+                                            @if($value->sale_price >0)
+                                            <span class="main-price discounted">{{number_format($value->price)}} Đ</span>
+                                            <span class="discounted-price">{{number_format($value->sale_price)}} Đ</span>
+                                             @else 
+                                            <span class="main-price">{{number_format($value->price)}} Đ</span>
+                                             @endif
+                                        </div>
+                                    </div>
+                                    
+                                    <!--=======  End of single product content  =======-->
+                                    </div>
+                                </div>
+                                <!--=======  End of single product  =======-->
+                                @endforeach
                                 
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-1-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-1-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-15%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a  class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Wooden Round Table</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$400.00</span>
-                                            <span class="discounted-price">$380.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-2-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-2-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Sofa with Cushion</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price">$85.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-3-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-3-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Green Coutch</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$360.00</span>
-                                            <span class="discounted-price">$300.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                        <div class="single-product">
-                                        <!--=======  single product image  =======-->
-                                        
-                                        <div class="single-product__image">
-                                            <a class="image-wrap" href="shop-product-basic.html">
-                                                <img src="{{url('')}}/public/assets/images/products/furniture-7-1-600x800.jpg" class="img-fluid" alt="">
-                                                <img src="{{url('')}}/public/assets/images/products/furniture-7-2-600x800.jpg" class="img-fluid" alt="">
-                                            </a>
-                    
-                                            <div class="single-product__floating-badges">
-                                                <span class="onsale">-25%</span>
-                                            </div>
-                                            
-                                            <div class="single-product__floating-icons">
-                                                <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                                <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                                <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                            </div>
-                                        </div>
-                                        
-                                        <!--=======  End of single product image  =======-->
-                    
-                                        <!--=======  single product content  =======-->
-                                
-                                        <div class="single-product__content">
-                                            <div class="title">
-                                                <h3> <a href="shop-product-basic.html">Candle Inside Glass</a></h3>
-                                                <a href="#">Thêm vào giỏ hàng</a>
-                                            </div>
-                                            <div class="price">
-                                                <span class="main-price discounted">$360.00</span>
-                                                <span class="discounted-price">$300.00</span>
-                                            </div>
-                                        </div>
-                                        
-                                        <!--=======  End of single product content  =======-->
-                                        </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-8-1-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-15%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a  class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Wooden Round Table</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$400.00</span>
-                                            <span class="discounted-price">$380.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-9-1-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Dining Chair</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">260.00</span>
-                                            <span class="discounted-price">$200.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-4-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-4-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1" data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Grey Tool</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$160.00</span>
-                                            <span class="discounted-price">$100.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-5-1-600x800.jpg" class="img-fluid" alt="">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-5-2-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                            <span class="onsale">-15%</span>
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a  class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Hanged Candle Holder</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price discounted">$400.00</span>
-                                            <span class="discounted-price">$380.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-                                
-                                <!--=======  single product  =======-->
-                                <div class="col-12 col-lg-4 col-md-6 col-sm-6 mb-45">
-                                    <div class="single-product">
-                                    <!--=======  single product image  =======-->
-                                    
-                                    <div class="single-product__image">
-                                        <a class="image-wrap" href="shop-product-basic.html">
-                                            <img src="{{url('')}}/public/assets/images/products/furniture-6-1-600x800.jpg" class="img-fluid" alt="">
-                                        </a>
-                
-                                        <div class="single-product__floating-badges">
-                                        </div>
-                                        
-                                        <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
-                                            <span class="quickview"><a class="cd-trigger" href="#qv-1"  data-tippy="Quick View" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left"  ><i class="ion-ios-search-strong"></i></a></span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product image  =======-->
-                
-                                    <!--=======  single product content  =======-->
-                            
-                                    <div class="single-product__content">
-                                        <div class="title">
-                                            <h3> <a href="shop-product-basic.html">Wooden Candle Holder</a></h3>
-                                            <a href="#">Thêm vào giỏ hàng</a>
-                                        </div>
-                                        <div class="price">
-                                            <span class="main-price">$85.00</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <!--=======  End of single product content  =======-->
-                                    </div>
-                                </div>
-                                <!--=======  End of single product  =======-->
-
                                 
                             </div>
                         </div>

@@ -6,12 +6,12 @@
 		<div class="col-md-5">
 			<div class="panel panel-info">
 				<div class="panel-heading">
-					<h3 class="panel-title">Thông tin khách hàng</h3>
+					<h3 class="panel-title">Thông tin người nhận hàng</h3>
 				</div>
 				<div class="panel-body">
-					<p>Họ tên khách hàng: {{$us->name}}</p>
-					<p>Địa chỉ: {{$us->address}}</p>
-					<p>SĐT: {{$us->phone}}</p>
+					<p>Họ tên người nhận: {{$order->name}}</p>
+					<p>Địa chỉ nhận: {{$order->address}}</p>
+					<p>SĐT: {{$order->phone}}</p>
 				</div>
 			</div>
 			<div class="panel panel-info">
@@ -66,6 +66,12 @@
 									<td>{{$value->quantity}}</td>
 								</tr>
 								@endforeach
+								<tr>
+									<td>TỔNG TIỀN</td>
+									<td></td>
+									<td></td>
+									<td>{{$order->total_price}} VNĐ</td>
+								</tr>
 							</tbody>
 						</table>
 					</div>

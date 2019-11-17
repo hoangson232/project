@@ -1,5 +1,5 @@
 @extends('Backend/master')
-@section('title','Quản lý sản phẩm')
+@section('title','Quản lý bình luận')
 @section('main')
 
 <form action="" method="GET" class="form-inline" role="form" enctype="multipart/form-data">
@@ -21,16 +21,17 @@
 		<button type="submit" class="btn btn-primary">
 			<i class="glyphicon glyphicon-search"></i>
 		</button>
-		<a href="{{route('pro_add')}}" class="btn btn-success">Thêm mới</a>
+		<a href="{{route('pro_add')}}" class="btn btn-success">Add new</a>
 	</form>
 	<div class="table-responsive">
 		<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>STT</th>
-					<th>Tên</th>
-					<th>Hình ảnh</th>
-					<th>Danh mục</th>
+					<th>Người bình luận</th>
+					<th>Sản phẩm</th>
+					<th>Nội dung</th>
+					<th>Ngày đăng</th>
 					<th>Trạng thái</th>
 					<!-- <th>Type</th> -->
 					<th></th>
@@ -38,26 +39,27 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($product as $value)
+				@foreach($comment as $value)
 				<tr>
 					<td>{{$loop->index+1}}</td>
-					<td>{{$value->name}}</td>
-					<td><img src="{{url('')}}/uploads/{{$value->image}}" alt="" width="50px"></td>
-					<td>{{$value->category->name}}</td>
+					<td>{{$value->acc->name}}</td>
+					<td>{{$value->pro->name}}</td>
+					<td>{{$value->comment}}</td>
+					<td>{{$value->created_at}}</td>
 					<td>{{($value->status==1)?'Hiện':'Ẩn'}}</td>
 					<!-- @if($value->type==1)
 					<td>Tin sản phẩm</td>
 					@else
 					<td>Tin thể thao</td>
 					@endif -->
-					<td><a href="{{ route('pro_del',['id'=>$value->id])}}" onclick="return confirm('Bạn có muốn xóa')"><i class="glyphicon glyphicon-trash"></i></a>Xóa</td>
-					<td><a href="{{ route('pro_edit',['id'=>$value->id])}}" ><i class="glyphicon glyphicon-edit"></i></a>Sửa</td>
+					<td><a href="{{route('com_del',['id'=>$value->id])}}" onclick="return confirm('Bạn có muốn xóa')"><i class="glyphicon glyphicon-trash"></i></a>Delete</td>
+					
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
 		<div class="clearfix">
-			{{$product->appends(request()->only('search'))->links()}}
+			{{$comment->appends(request()->only('search'))->links()}}
 		</div>
 	</div>
 	@stop

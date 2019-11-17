@@ -190,9 +190,8 @@
 					
 									<div class="tab-product-navigation tab-product-navigation--product-desc mb-50">
 										<div class="nav nav-tabs justify-content-center" id="nav-tab2" role="tablist">
-											<a class="nav-item nav-link active" id="product-tab-1" data-toggle="tab" href="#product-series-1" role="tab" aria-selected="true">Mô tả</a>
-											<a class="nav-item nav-link" id="product-tab-2" data-toggle="tab" href="#product-series-2" role="tab" aria-selected="false">Thông tin thêm</a>
-											<a class="nav-item nav-link" id="product-tab-3" data-toggle="tab" href="#product-series-3" role="tab" aria-selected="false">Reviews (3)</a>
+											
+											<a class="nav-item nav-link active" id="product-tab-3" data-toggle="tab" href="#product-series-3" role="tab" aria-selected="false">BÌNH LUẬN</a>
 										</div>
 									</div>
 									
@@ -202,7 +201,7 @@
 									
 									<div class="tab-content" id="nav-tabContent2">
 
-										<div class="tab-pane fade show active" id="product-series-1" role="tabpanel" aria-labelledby="product-tab-1">
+										<div class="tab-pane fade" id="product-series-1" role="tabpanel" aria-labelledby="product-tab-1">
 											<!--=======  shop product long description  =======-->
 											
 											<div class="shop-product__long-desc mb-30">
@@ -212,181 +211,65 @@
 											<!--=======  End of shop product long description  =======-->
 										</div>
 
-										<div class="tab-pane fade" id="product-series-2" role="tabpanel" aria-labelledby="product-tab-2">
-											<!--=======  shop product additional information  =======-->
-											
-											<div class="shop-product__additional-info">
-												<table class="shop-attributes">
-													<tbody>
-														<tr>
-															<th>Size</th>
-															<td><p>L, M, S, XS</p></td>
-														</tr>
-														<tr>
-															<th>Color</th>
-															<td><p>Black, Blue, Brown</p></td>
-														</tr>
-													</tbody>
-												</table>
-											</div>
-											
-											<!--=======  End of shop product additional information  =======-->
-										</div>
+									
 
-										<div class="tab-pane fade" id="product-series-3" role="tabpanel" aria-labelledby="product-tab-3">
+										<div class="tab-pane fade show active" id="product-series-3" role="tabpanel" aria-labelledby="product-tab-3">
 											<!--=======  shop product reviews  =======-->
 											
 											<div class="shop-product__review">
-												<h2 class="review-title mb-20">3 reviews for High-waist Trousers</h2>
+												<h2 class="review-title mb-20">đang có {{count($show)}} bình luận về {{$pro->name}}</h2>
 
 												<!--=======  single review  =======-->
+												@foreach($show as $value)
 												
 												<div class="single-review">
 													<div class="single-review__image">
 														<img src="{{url('')}}/public/assets/images/user/user1.jpg" class="img-fluid" alt="">
 													</div>
 													<div class="single-review__content">
-														<!--=======  rating  =======-->
-														
-														<div class="shop-product__rating">
-															<span class="product-rating">
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="ion-android-star-outline"></i>
-															</span>
-														</div>
-														
-														<!--=======  End of rating  =======-->
 
 														<!--=======  username and date  =======-->
 														
-														<p class="username">Scott James <span class="date">/ April 5, 2018</span></p> 
+														<p class="username"> {{$value->acc->name}} đã bình luận<span class="date">/ {{$value->created_at}}</span></p> 
 														
 														<!--=======  End of username and date  =======-->
 
 														<!--=======  message  =======-->
 														
 														<p class="message">
-															Thanks for always keeping your HTML themes up to date. Your level of support and dedication is second to none.
+															{{$value->comment}}
 														</p>
 														
 														<!--=======  End of message  =======-->
 													</div>
 												</div>
+												@endforeach
 												
 												<!--=======  End of single review  =======-->
 
-												<!--=======  single review  =======-->
-												
-												<div class="single-review">
-													<div class="single-review__image">
-														<img src="{{url('')}}/public/assets/images/user/user2.jpg" class="img-fluid" alt="">
-													</div>
-													<div class="single-review__content">
-														<!--=======  rating  =======-->
-														
-														<div class="shop-product__rating">
-															<span class="product-rating">
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="ion-android-star-outline"></i>
-															</span>
-														</div>
-														
-														<!--=======  End of rating  =======-->
+												<h2 class="review-title mb-20">THÊM BÌNH LUẬN</h2>
+												@if(Auth::check())
 
-														<!--=======  username and date  =======-->
-														
-														<p class="username">Owen Christ <span class="date">/ April 7, 2018</span></p> 
-														
-														<!--=======  End of username and date  =======-->
-
-														<!--=======  message  =======-->
-														
-														<p class="message">
-															I didn’t expect this poster to arrive folded. Now there are lines on the poster and one sad Ninja.
-														</p>
-														
-														<!--=======  End of message  =======-->
-													</div>
-												</div>
-												
-												<!--=======  End of single review  =======-->
-
-												<!--=======  single review  =======-->
-												
-												<div class="single-review">
-													<div class="single-review__image">
-														<img src="{{url('')}}/public/assets/images/user/user3.jpg" class="img-fluid" alt="">
-													</div>
-													<div class="single-review__content">
-														<!--=======  rating  =======-->
-														
-														<div class="shop-product__rating">
-															<span class="product-rating">
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="active ion-android-star"></i>
-																<i class="ion-android-star-outline"></i>
-															</span>
-														</div>
-														
-														<!--=======  End of rating  =======-->
-
-														<!--=======  username and date  =======-->
-														
-														<p class="username">Edna Watson <span class="date">/ April 5, 2018</span></p> 
-														
-														<!--=======  End of username and date  =======-->
-
-														<!--=======  message  =======-->
-														
-														<p class="message">
-															Can’t wait to start mixin’ with this one! Irba-irr-Up-up-up-up-date your theme!
-														</p>
-														
-														<!--=======  End of message  =======-->
-													</div>
-												</div>
-												
-												<!--=======  End of single review  =======-->
-
-												<h2 class="review-title mb-20">Add a review</h2>
-												<p class="text-center">Your email address will not be published. Required fields are marked *</p>
-
+												@else
+												<p class="text-center">Bạn phải đăng nhập để sử dụng chức năng này</p>
+												@endif
 												<!--=======  review form  =======-->
 												
 												<div class="lezada-form lezada-form--review">
-													<form action="#">
+													<form action="#" method="POST">
+														@csrf
 														<div class="row">
+															@if(Auth::check())
 															<div class="col-lg-6 mb-20">
-																<input type="text" placeholder="Name *" required>
-															</div>
-															<div class="col-lg-6 mb-20">
-																<input type="email" placeholder="Email *" required>
+																<h4>{{Auth::user()->name}}</h4>
 															</div>
 															<div class="col-lg-12 mb-20">
-																<span class="rating-title mr-30">YOUR RATING</span>
-																<span class="product-rating">
-																	
-																	<i class="active ion-android-star-outline"></i>
-																	<i class="active ion-android-star-outline"></i>
-																	<i class="active ion-android-star-outline"></i>
-																	<i class="active ion-android-star-outline"></i>
-																	<i class="active ion-android-star-outline"></i>
-																</span>
-															</div>
-															<div class="col-lg-12 mb-20">
-																<textarea cols="30" rows="10" placeholder="Your review *"></textarea>
+																<textarea cols="30" rows="10" placeholder="Nhập bình luận tại đây..." name="comment"></textarea>
 															</div>
 															<div class="col-lg-12 text-center">
-																<button type="submit" class="lezada-button lezada-button--medium">submit</button>
+																<button type="submit" class="lezada-button lezada-button--medium">bình luận</button>
 															</div>
+															@endif
 														</div>
 													</form>
 												</div>
@@ -416,4 +299,9 @@
     </div>
     
     <!--=====  End of shop page content  ======-->
+<script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
     @stop

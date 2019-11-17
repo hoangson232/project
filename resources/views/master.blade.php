@@ -203,7 +203,7 @@
 												<li><a href="{{route('cus_logout')}}" onclick= "return confirm('Bạn có chắc ko?')">Đăng xuất</a></li>
 												@else
 												<li><a href="{{route('cus_login')}}">Đăng nhập</a></li>
-												<li><a href="{{route('cus_account_add')}}">Đăng ký</a></li>
+												<li><a href="{{route('cus_add')}}">Đăng ký</a></li>
 												@endif
 											</ul>
 										</li>

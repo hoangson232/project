@@ -21,6 +21,11 @@
 Route::get('/','HomeController@index')->name('home');
 Route::group(['prefix'=>'frontend'],function(){
 	Route::get('pro_detail/{slug}','HomeController@pro_detail')->name('pro_detail');
+	Route::post('pro_detail/{slug}','HomeController@add_comment')->name('add_comment');
+
+
+
+
 	Route::get('shop/{slug}','HomeController@shop')->name('shop');
 	Route::get('cus_login','HomeController@cus_login')->name('cus_login');
 	Route::post('cus_login','HomeController@post_login')->name('post_login');
@@ -28,10 +33,13 @@ Route::group(['prefix'=>'frontend'],function(){
 	Route::get('shop_checkout','HomeController@shop_checkout')->name('shop_checkout');
 	Route::post('shop_checkout','HomeController@post_checkout')->name('post_checkout');
 	Route::get('search_product','HomeController@search_product')->name('search_product');
-	Route::get('add','HomeController@add')->name('cus_account_add');
-	Route::post('add','HomeController@post_add')->name('cus_account_add');
+	Route::get('add','HomeController@add')->name('cus_add');
+	Route::post('add','HomeController@post_add')->name('cus_add');
 	Route::get('change_pass','HomeController@change_pass')->name('cus_change_pass');
 	Route::post('change_pass','HomeController@post_pass')->name('cus_change_pass');
+
+	
+
 });
 
 
@@ -60,6 +68,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Backend','middleware'=>'auth'],fun
 		include 'product.php';
 		include 'account.php';
 		include 'order.php';
+		include 'comment.php';
+
 });
 
 Route::get('admin/login','Backend\AdminController@login')->name('login');

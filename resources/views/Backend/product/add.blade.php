@@ -20,7 +20,7 @@
 		</select>
 	</div>
 	<div class="form-group">
-		<label for="">product new slug</label>
+		<label for="">Đường dẫn</label>
 		<input type="text" class="form-control" name="slug" id="slug" placeholder="Input name">
 		@if($errors->has('slug'))
 		{{$errors->first('slug')}}

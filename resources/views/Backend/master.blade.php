@@ -27,7 +27,7 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="{{route('admin')}}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
@@ -68,28 +68,51 @@
             <i class="fa fa-th"></i> <span>Trang chủ quản trị</span>
           </a>
         </li>
+         <li class="treeview">
+          <a href="#">
+            <i class="fa fa-home"></i> <span>Quản lý danh mục</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('cat')}}"><i class="fa fa-circle-o"></i> Danh mục sản phẩm</a></li>
+            <li><a href="{{route('cat_add')}}"><i class="fa fa-circle-o"></i> Thêm mới danh mục</a></li>
+          </ul>
+        </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-home"></i> <span>Quản lý sản phẩm</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              <small class="label pull-right bg-green">{{$product_count}}</small>
+              </span>
+            <span class="pull-right-container">
+              <i class=""></i>
             </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('pro')}}"><i class="fa fa-circle-o"></i> Danh sách sản phẩm</a></li>
             <li><a href="{{route('pro_add')}}"><i class="fa fa-circle-o"></i> Thêm mới sản phẩm</a></li>
-            <li><a href="{{route('cat')}}"><i class="fa fa-circle-o"></i> Danh mục sản phẩm</a></li>
           </ul>
         </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-home"></i> <span>Quản lý đơn hàng</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              <small class="label pull-right bg-blue">{{$od_count}}</small>
+              </span>
+            <span class="pull-right-container">
+              <i class=""></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="{{route('order_list')}}"><i class="fa fa-circle-o"></i> Danh sách đơn hàng</a></li>
+            <li><a href="{{route('order_list')}}"><i class="fa fa-circle-o"></i> Danh sách đơn hàng
+              <span class="pull-right-container">
+              <small class="label pull-right bg-blue">{{$od_count_all}}</small>
+              </span>
+            </a></li>
             <li><a href=""><i class="fa fa-circle-o"></i> Theo dõi sản phẩm</a></li>
             
           </ul>
@@ -98,13 +121,53 @@
           <a href="#">
             <i class="fa fa-home"></i> <span>Quản lý tài khoản admin</span>
             <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
+              <small class="label pull-right bg-black-active">{{$admin_count}}</small>
             </span>
+            <span class="pull-right-container">
+              <i class=""></i>
+            </span>
+
           </a>
           <ul class="treeview-menu">
             <li><a href="{{route('account')}}"><i class="fa fa-circle-o"></i> Danh sách</a></li>
             <li><a href="{{route('account_add')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>
             
+          </ul>
+        </li>
+          <li class="treeview">
+          <a href="#">
+            <i class="fa fa-home"></i> <span>Quản lý tài khoản khách</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow">{{$user_count}}</small>
+              </span>
+            <span class="pull-right-container">
+              <i class=""></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('cus_account')}}"><i class="fa fa-circle-o"></i> Danh sách
+              <span class="pull-right-container">
+              <small class="label pull-right bg-yellow">{{$user_count}}</small>
+              </span></a></li>
+            <li><a href="{{route('cus_account_add')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>           
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-home"></i> <span>Quản lý bình luận</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow"></small>
+              </span>
+            <span class="pull-right-container">
+              <i class=""></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('comment')}}"><i class="fa fa-circle-o"></i> Danh sách
+              <span class="pull-right-container">
+              <small class="label pull-right bg-yellow"></small>
+              </span></a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i> Thêm mới</a></li>           
           </ul>
         </li>
         <li>

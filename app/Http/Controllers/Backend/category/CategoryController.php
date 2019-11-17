@@ -1,13 +1,13 @@
 <?php 
 namespace App\Http\Controllers\Backend\category;
 use App\Models\Category;
-
+use App\Models\Product;
 use Illuminate\http\Request;
 use App\Http\Controllers\Backend\Main_adminController;
 /**
  * 
  */
-class DemoController extends Main_adminController
+class CategoryController extends Main_adminController
 {
 	public function index(){
 		return view('welcome');
@@ -44,8 +44,14 @@ class DemoController extends Main_adminController
 
 	}
 	public function delete($id){
+		$model=Category::find($id);
+		$pros=Product::where('category_id',$id)->count();
+		if($pros == 0){
 		Category::find($id)->delete();
 		return redirect()->back()->with('mes','Xóa thành công');//quay lại trang trước đó
+		}else{
+		return redirect()->back()->with('error','Xóa không thành công');//quay lại trang trước đó
+		}
 	}
 	public function add(){
 		return view('Backend/category/add');

@@ -68,6 +68,7 @@
 												<input type="text" placeholder="Address line 1" name="address" value="{{Auth::user()->address}}">
 												
 											</div>		
+											<input type="hidden" name="total_price" value="{{$carts->total_price}}">
 										</div>
 		
 									</div>
