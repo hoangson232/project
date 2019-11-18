@@ -1,5 +1,5 @@
 <?php 	
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\ImgProduct;
@@ -11,6 +11,9 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use Mail;
 use App\Models\Account;
+use App\Models\Blog;
+use App\Models\Banner;
+use App\Http\Controllers\Controller;
 /**
  * 
  */
@@ -204,6 +207,31 @@ public function post_checkout(Request $req, CartHelper $cart){
 
 						->get();
 		return view('frontend.search_result',compact('product','req'));
+	}
+
+	public function bananer(){
+		$bannernew = Banner::where('status',1)->orderBy('name','ASC')->get();
+			// dd($bannernew);
+		return view('frontend.home',compact('bannernew'));
+	}
+
+	public function comple(){
+		return view('frontend.comple');
+	}
+	public function blog_index(){
+		$blognew = Blog::where('status',1)->orderBy('created_at','desc')->get();
+		$blgs = Blog::paginate(5);
+		
+		// dd($blognew);
+		return view('frontend.blog',compact('blognew','blgs'));
+	}
+	public function blog_detail($slug){
+			$blogssd = Blog::where('status',1)->limit(4)->orderBy('created_at','desc')->get();
+			$blogd = Blog::where('slug',$slug)->first();
+			return view('frontend.blog-detail',compact('blogd','blogssd'));
+	}
+	public function lien_he(){
+		return view('frontend.about');
 	}
 }
 

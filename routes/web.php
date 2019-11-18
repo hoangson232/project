@@ -18,12 +18,16 @@
 // Route::get('home','DemoController@home')->name('home');
 // Route::get('about','DemoController@about')->name('about');
 // Route::get('product/{id}/{name}','DemoController@product')->name('product');
-Route::get('/','HomeController@index')->name('home');
-Route::group(['prefix'=>'frontend'],function(){
+Route::get('/','Frontend\HomeController@index')->name('home');
+Route::group(['prefix'=>'frontend','namespace'=>'Frontend'],function(){
 	Route::get('pro_detail/{slug}','HomeController@pro_detail')->name('pro_detail');
 	Route::post('pro_detail/{slug}','HomeController@add_comment')->name('add_comment');
 
-
+	Route::get('banner','HomeController@bananer')->name('banner');
+	Route::get('dat-hang-thanh-cong','HomeController@comple')->name('comples');
+	Route::get('lien-he','HomeController@lien_he')->name('lien-he');
+	Route::get('blog','HomeController@blog_index')->name('blog');
+	Route::get('blog-detail/{slug}','HomeController@blog_detail')->name('blog-deta');
 
 
 	Route::get('shop/{slug}','HomeController@shop')->name('shop');
@@ -45,7 +49,7 @@ Route::group(['prefix'=>'frontend'],function(){
 
 
 
-Route::group(['prefix'=>'cart'],function(){
+Route::group(['prefix'=>'cart','namespace'=>'Frontend'],function(){
 	Route::get('show-cart','CartController@show')->name('show-cart');
 	Route::get('add-cart/{id}','CartController@add')->name('add-cart');
 	Route::get('update-cart/{id}','CartController@update')->name('update-cart');
@@ -69,6 +73,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Backend','middleware'=>'auth'],fun
 		include 'account.php';
 		include 'order.php';
 		include 'comment.php';
+		include 'banner.php';
+		include 'blog.php';
 
 });
 

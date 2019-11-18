@@ -1,5 +1,5 @@
 <?php 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers\Backend\account;
 use App\Models\Account;
 use App\Models\Order;
 use Illuminate\http\Request;

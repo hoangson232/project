@@ -89,47 +89,7 @@
 							<div class="site-main-nav d-none d-lg-block">
 								<nav class="site-nav center-menu">
 									<ul>
-										<li class="menu-item-has-children"><a href="{{route('home')}}">Trang chủ</a>
-											<ul class="sub-menu mega-menu mega-menu-column-5">
-												<li><a href="javascript:void(0)" class="mega-column-title">Home Group</a>
-													<ul class="mega-sub-menu">
-														<li><a href="index-trending.html">Trending</a><img src="{{url('')}}/public/assets/images/home-preview/01.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-collection.html">My collection</a><img src="{{url('')}}/public/assets/images/home-preview/02.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-special.html">Special</a><img src="{{url('')}}/public/assets/images/home-preview/03.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-concept.html">concept</a><img src="{{url('')}}/public/assets/images/home-preview/04.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-smart.html">smart design</a><img src="{{url('')}}/public/assets/images/home-preview/05.jpg" class="img-fluid" alt=""></li>
-													</ul>
-												</li>
-												<li><a href="javascript:void(0)" class="mega-column-title">Home Group</a>
-													<ul class="mega-sub-menu">
-														<li><a href="index-furniture.html">Furniture </a><img src="{{url('')}}/public/assets/images/home-preview/06.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-essentials.html">Essentials</a><img src="{{url('')}}/public/assets/images/home-preview/07.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-lookbook.html">Lookbook</a><img src="{{url('')}}/public/assets/images/home-preview/08.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-wearables.html">Wearables</a><img src="{{url('')}}/public/assets/images/home-preview/09.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-accessories.html">Accessories</a><img src="{{url('')}}/public/assets/images/home-preview/10.jpg" class="img-fluid" alt=""></li>
-													</ul>
-												</li>
-												<li><a href="javascript:void(0)" class="mega-column-title">Home Group</a>
-													<ul class="mega-sub-menu">
-														<li><a href="index-shoppable.html">Shoppable</a><img src="{{url('')}}/public/assets/images/home-preview/11.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-instagram.html">Instagram Shop</a><img src="{{url('')}}/public/assets/images/home-preview/12.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-fashion.html">Fashion</a><img src="{{url('')}}/public/assets/images/home-preview/13.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-perfumes.html">Perfumes</a><img src="{{url('')}}/public/assets/images/home-preview/14.jpg" class="img-fluid" alt=""></li>
-														<li><a href="index-cosmetics.html">Cosmetics</a><img src="{{url('')}}/public/assets/images/home-preview/15.jpg" class="img-fluid" alt=""></li>
-													</ul>
-												</li>
-												<li><a href="javascript:void(0)" class="mega-column-title">Home Group</a>
-													<ul class="mega-sub-menu">
-														<li><a href="index-decor.html">Home Decor</a><img src="{{url('')}}/public/assets/images/home-preview/16.png" class="img-fluid" alt=""></li>
-														<li><a href="index-creative.html">Creative</a><img src="{{url('')}}/public/assets/images/home-preview/17.png" class="img-fluid" alt=""></li>
-													</ul>
-												</li>
-												<li>
-													<div class="menu-image">
-														<img src="{{url('')}}/public/assets/images/menu-image/menu-element.png" class="img-fluid" alt="">
-													</div>
-												</li>
-											</ul>
+										<li class="menu-item"><a href="{{route('home')}}">Trang chủ</a>											
 										</li>
 										<li class="menu-item-has-children"><a href=""> Danh mục</a>
 											<ul class="sub-menu single-column-menu">
@@ -139,62 +99,10 @@
 											</ul>
 										</li>
 									
-										<li class="menu-item-has-children"><a href="javascript:void(0)">Liên hệ</a>
-											<ul class="sub-menu single-column-menu">
-												<li><a href="about-us.html">About Us</a></li>
-												<li><a href="about-us-2.html">About Us 2</a></li>
-												<li><a href="contact-us.html">Contact Us</a></li>
-												<li><a href="faq.html">F.A.Q</a></li>
-												<li><a href="coming-soon.html">Coming Soon</a></li>
-												<li><a href="404.html">404</a></li>
-											</ul>
+										<li class="menu-item"><a href="{{route('lien-he')}}">Liên hệ</a>
 										</li>
 
-										<li class="menu-item-has-children "><a href="javascript:void(0)">Tin tức</a>
-											<ul class="sub-menu single-column-menu single-column-has-children">
-												<li><a href="blog-standard-right-sidebar.html">Standard Layout</a>
-													<ul class="multilevel-submenu">
-														<li><a href="blog-standard-right-sidebar.html">Right Sidebar</a></li>
-														<li><a href="blog-standard-left-sidebar.html">Left Sidebar</a></li>
-														<li><a href="blog-standard-full-width.html">Full Width</a></li>
-													</ul>
-												</li>
-												<li><a href="blog-grid-right-sidebar.html">Grid Layout</a>
-													<ul class="multilevel-submenu">
-														<li><a href="blog-grid-right-sidebar.html">Right Sidebar</a></li>
-														<li><a href="blog-grid-left-sidebar.html">Left Sidebar</a></li>
-														<li><a href="blog-grid-full-width.html">Full Width</a></li>
-													</ul>
-												</li>
-												<li><a href="blog-list-right-sidebar.html">List Layout</a>
-													<ul class="multilevel-submenu">
-														<li><a href="blog-list-right-sidebar.html">Right Sidebar</a></li>
-														<li><a href="blog-list-left-sidebar.html">Left Sidebar</a></li>
-														<li><a href="blog-list-full-width.html">Full Width</a></li>
-													</ul>
-												</li>
-												<li><a href="blog-masonry-right-sidebar.html">Masonry Layout</a>
-													<ul class="multilevel-submenu">
-														<li><a href="blog-masonry-right-sidebar.html">Right Sidebar</a></li>
-														<li><a href="blog-masonry-left-sidebar.html">Left Sidebar</a></li>
-														<li><a href="blog-masonry-full-width.html">Full Width</a></li>
-													</ul>
-												</li>
-												<li><a href="blog-full-then-grid-right-sidebar.html">1st Full Then Grid Layout</a>
-													<ul class="multilevel-submenu">
-														<li><a href="blog-full-then-grid-right-sidebar.html">Right Sidebar</a></li>
-														<li><a href="blog-full-then-grid-left-sidebar.html">Left Sidebar</a></li>
-														<li><a href="blog-full-then-grid-full-width.html">Full Width</a></li>
-													</ul>
-												</li>
-												<li><a href="blog-single-post-right-sidebar.html">Single Post Layout</a>
-													<ul class="multilevel-submenu">
-														<li><a href="blog-single-post-right-sidebar.html">Right Sidebar</a></li>
-														<li><a href="blog-single-post-left-sidebar.html">Left Sidebar</a></li>
-														<li><a href="blog-single-post-full-width.html">Full Width</a></li>
-													</ul>
-												</li>
-											</ul>
+										<li class="menu-item "><a href="{{route('blog')}}">Tin tức</a>
 										</li>
 										<li class="menu-item-has-children"><a href="javascript:void(0)">Tài khoản</a>
 											<ul class="sub-menu single-column-menu">

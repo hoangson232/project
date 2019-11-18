@@ -3,10 +3,10 @@
 @section('main')
 
 <form action="" method="GET" class="form-inline" role="form" enctype="multipart/form-data">
-	@if(session('mes'))
+	@if(session('mess'))
 	<div class="alert alert-success">
 		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-		<strong>{{session('mes')}}</strong>
+		<strong>{{session('mess')}}</strong>
 	</div>
 	@endif
 	@if(session('error'))

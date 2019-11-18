@@ -1,5 +1,5 @@
 <?php 
-Route::group(['prefix'=>'account'],function(){
+Route::group(['prefix'=>'account','namespace'=>'account'],function(){
 	Route::get('','AccountController@index')->name('account');
 	Route::get('cus','AccountController@cus_index')->name('cus_account');
 	Route::get('edit-{id}','AccountController@edit')->name('account_edit');

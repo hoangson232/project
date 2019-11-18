@@ -29,16 +29,14 @@ class CategoryController extends Main_adminController
 	}
 		public function edit_cate_post($id,Request $request){
 		$request->offsetUnset('_token');
-		// $this->validate($request,[
-		// 'name'=>'required|unique:category,name',
-		// 'slug'=>'required|unique:category,slug',
-		// ],
-		// [
-		// 'name.required'=>'Danh mục không được để rỗng',
-		// 'name.unique'=>'Tên danh mục đã có trong CSDL',
-		// 'slug.required'=>'Slug không được để rỗng',
-		// 'slug.unique'=>'Tên slug đã có trong CSDL',
-		// ]);
+		$this->validate($request,[
+		'name'=>'required',
+		'slug'=>'required',
+		],
+		[
+		'name.required'=>'Danh mục không được để rỗng',
+		'slug.required'=>'Slug không được để rỗng',
+		]);
 		Category::where('id',$id)->update($request->all());
 		return redirect()-> route('cat')->with('mes','Cập nhật thành công');
 

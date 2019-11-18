@@ -152,6 +152,45 @@
             <li><a href="{{route('cus_account_add')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>           
           </ul>
         </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-home"></i> <span>Quản lý tin tức</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow"></small>
+              </span>
+            <span class="pull-right-container">
+              <i class=""></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('list-blog')}}"><i class="fa fa-circle-o"></i> Danh sách
+              <span class="pull-right-container">
+              <small class="label pull-right bg-yellow"></small>
+              </span></a></li>
+            <li><a href="{{route('add-blog')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>           
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-home"></i> <span>Quản lý banner</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow"></small>
+              </span>
+            <span class="pull-right-container">
+              <i class=""></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('list-banner')}}"><i class="fa fa-circle-o"></i> Danh sách
+              <span class="pull-right-container">
+              <small class="label pull-right bg-yellow"></small>
+              </span></a></li>
+            <li><a href="{{route('add-banner')}}"><i class="fa fa-circle-o"></i> Thêm mới</a></li>           
+          </ul>
+        </li>
+
         <li class="treeview">
           <a href="#">
             <i class="fa fa-home"></i> <span>Quản lý bình luận</span>

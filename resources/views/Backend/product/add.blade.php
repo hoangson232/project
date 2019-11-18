@@ -30,11 +30,20 @@
 	<div class="form-group">
 		<label for="">Chọn ảnh</label>
 		<input type="file" class="form-control" name="image">
+		@if($errors->has('image'))
+		{{$errors->first('image')}}
+		@endif
 	</div>
 
 	<div class="form-group">
 		<label for="">Chọn nhóm ảnh</label>
 		<input type="file" class="form-control" name="images[]" multiple="multiple">
+		@if($errors->has('images'))
+		{{$errors->first('images')}}
+		@endif
+		@if($errors->has('images.*'))
+		{{$errors->first('images.*')}}
+		@endif
 	</div>
 
 	<div class="form-group">
