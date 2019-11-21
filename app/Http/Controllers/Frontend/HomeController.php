@@ -30,7 +30,8 @@ public function index(){
 			->where('sale_price','>',0)
 			-> orderBy('created_at','DESC')-> get();
 	$category = Category::where('status',1)->orderBy('name','asc')->get();
-	return view('home',compact('product','category','productNew','productSale'));
+	$bannernew = Banner::where('status',1)->orderBy('name','ASC')->get();
+	return view('home',compact('product','category','productNew','productSale','bannernew'));
 	}
 public function pro_detail($slug){
 	$pro=Product::where('slug',$slug)-> first();
@@ -120,7 +121,7 @@ public function cus_logout(){
 
 
 public function shop_checkout(){
-	return view('shop_checkout');
+	return view('frontend.shop_checkout');
 	}	
 
 public function post_checkout(Request $req, CartHelper $cart){
@@ -144,12 +145,16 @@ public function post_checkout(Request $req, CartHelper $cart){
 	$data=[
 		'name'=>$req->name,
 		'email'=>$req->email,
+		'id'=>$order->id,
+		'total_price'=>$order->total_price,
 	];
+	
 	$email=[
 		'ph1906ij@gmail.com',
 		$data['email'],
 		'hoangson232@gmail.com'
 	];
+	// dd($data['id']);die();
 	Mail::send('email.viewemail', $data, function ($message) use($data,$email) {
 	    $message->from('ph1906ij@gmail.com', 'Lezada');
 	
@@ -160,7 +165,7 @@ public function post_checkout(Request $req, CartHelper $cart){
 	});
 
 	Session(['cart'=>[]]);
-	return redirect()->route('home')->with('mes','Chúc mừng bạn đã đặt hàng thành công!');
+	return redirect()->route('complete');
 	}	
 
 	public function change_pass(){
@@ -209,14 +214,8 @@ public function post_checkout(Request $req, CartHelper $cart){
 		return view('frontend.search_result',compact('product','req'));
 	}
 
-	public function bananer(){
-		$bannernew = Banner::where('status',1)->orderBy('name','ASC')->get();
-			// dd($bannernew);
-		return view('frontend.home',compact('bannernew'));
-	}
-
-	public function comple(){
-		return view('frontend.comple');
+	public function complete(){
+		return view('frontend.complete');
 	}
 	public function blog_index(){
 		$blognew = Blog::where('status',1)->orderBy('created_at','desc')->get();
@@ -230,7 +229,7 @@ public function post_checkout(Request $req, CartHelper $cart){
 			$blogd = Blog::where('slug',$slug)->first();
 			return view('frontend.blog-detail',compact('blogd','blogssd'));
 	}
-	public function lien_he(){
+	public function about(){
 		return view('frontend.about');
 	}
 }

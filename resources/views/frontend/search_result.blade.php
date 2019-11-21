@@ -12,7 +12,7 @@
 					<!--=======  breadcrumb list  =======-->
 					
 						<ul class="breadcrumb-list">
-							<li class="breadcrumb-list__item"><a href="index.html">TRANG CHỦ</a></li>
+                        <li class="breadcrumb-list__item"><a href="{{route('home')}}">TRANG CHỦ</a></li>
 							<li class="breadcrumb-list__item breadcrumb-list__item--active">KẾT QUẢ TÌM KIẾM</li>
 						</ul>
 					
@@ -56,7 +56,18 @@
 		<!--=============================================
 		=            shop page content         =
 		=============================================-->
-		
+		@if(session('mess'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{session('mess')}}</strong>
+                    </div>
+                    @endif
+                    @if(session('error'))
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{session('error')}}</strong>
+                    </div>
+                    @endif
 		<div class="shop-page-content mt-100 mb-100">
 			<div class="container">
 				<div class="row">
@@ -72,13 +83,16 @@
                                             <img src="{{url('')}}/uploads/{{$value->image}}" class="img-fluid" alt="" width="100px">
                                         </a>
                 
+                                        @if($value->sale_price >0)
                                         <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
+                                            <span class="onsale">Sale</span>
                                         </div>
+                                        @endif
                                         
                                         <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
-                                            <span class="compare"><a href="#" data-tippy="Compare" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-shuffle-strong"></i></a></span>
+                                            @if(Auth::check())
+                                            <span class="wishlist"><a href="{{route('add_wishlist',['account_id'=>Auth::user()->id,'product_id'=>$value->id])}}" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            @endif
                                             <span class="quickview"><a class="" href="{{route('pro_detail',['slug'=>$value->slug])}}" ><i class="ion-ios-search-strong"></i></a></span>
                                         </div>
                                     </div>
@@ -90,7 +104,7 @@
                                     <div class="single-product__content">
                                         <div class="title">
                                             <h3> <a href="shop-product-basic.html">{{$value->name}}</a></h3>
-                                            <a href="{{route('add-cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
+                                            <a href="{{route('add_cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
                                         </div>
                                         <div class="price">
                                             @if($value->sale_price >0)

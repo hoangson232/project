@@ -99,7 +99,7 @@
 											</ul>
 										</li>
 									
-										<li class="menu-item"><a href="{{route('lien-he')}}">Liên hệ</a>
+										<li class="menu-item"><a href="{{route('about')}}">Liên hệ</a>
 										</li>
 
 										<li class="menu-item "><a href="{{route('blog')}}">Tin tức</a>
@@ -108,6 +108,7 @@
 											<ul class="sub-menu single-column-menu">
 												@if(Auth::check())
 												<li><a href="{{route('cus_change_pass')}}">Đổi mật khẩu</a></li>
+												<li><a href="{{route('cart_history')}}">Lịch sử mua hàng</a></li>
 												<li><a href="{{route('cus_logout')}}" onclick= "return confirm('Bạn có chắc ko?')">Đăng xuất</a></li>
 												@else
 												<li><a href="{{route('cus_login')}}">Đăng nhập</a></li>
@@ -150,9 +151,9 @@
 								<!--=======  single-icon  =======-->
 								
 								<div class="single-icon wishlist">
-									<a href="javascript:void(0)" id="offcanvas-wishlist-icon">
+								<a href="{{route('show-wishlist')}}" id="">
 										<i class="ion-android-favorite-outline"></i>
-										<span class="count">15</span>
+								<span class="count">{{$wishlist_count}}</span>
 									</a>
 								</div>
 								
@@ -160,9 +161,13 @@
 								<!--=======  single-icon  =======-->
 								
 								<div class="single-icon cart">
-									<a href="{{route('show-cart')}}" id="offcanvas-cart-icon">
+									<a href="{{route('show_cart')}}" id="">
 										<i class="ion-ios-cart"></i>
+										@if(Auth::check())
 										<span class="count">{{$carts->total_quantity}}</span>
+										@else
+										<span class="count">0</span>
+										@endif
 									</a>
 								</div>
 								<!--=======  End of single-icon  =======-->
@@ -204,12 +209,9 @@
                     <div class="footer-nav-container footer-nav-container--horizontal mb-20">
                         <nav>
                             <ul>
-                                <li><a href="#">VỀ CHÚNG TÔI</a></li>
-                                <li><a href="#">ĐỊA ĐIỂM CỬA HÀNG</a></li>
-                                <li><a href="#">LIÊN HỆ</a></li>
-                                <li><a href="#">HỖ TRỢ</a></li>
-                                <li><a href="#">CHÍNH SÁCH</a></li>
-                                <li><a href="#">FAQS</a></li>
+                                <li><a href="{{route('about')}}">VỀ CHÚNG TÔI</a></li>
+                                <li><a href="{{route('about')}}">ĐỊA ĐIỂM CỬA HÀNG</a></li>
+                                <li><a href="{{route('about')}}">LIÊN HỆ</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -219,7 +221,7 @@
                     <!--=======  copyright text  =======-->
                     
                     <div class="footer__copyright-text">
-                        <p>&copy; 2019 lezada. All Rights Reserved | <span>(+00) 123 567990</span> | contact@lezada.com</p>
+                        <p>&copy; 2019 lezada. All Rights Reserved | <span>(+00) 123 567990</span> | ph1906@gmail.com</p>
                     </div>
                     
                     <!--=======  End of copyright text  =======-->

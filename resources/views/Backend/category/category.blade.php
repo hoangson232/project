@@ -31,14 +31,14 @@
 					<th>Tên</th>
 					<th>Trạng thái</th>
 					<!-- <th>Type</th> -->
-					<th></th>
-					<th></th>
+					<th>Xóa</th>
+					<th>Sửa</th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($cates as $value)
+				@foreach($cates as $key=> $value)
 				<tr>
-					<td>{{$loop->index+1}}</td>
+					<td>{{ $cates->firstItem() + $key }}</td>
 					<td>{{$value->name}}</td>
 					<td>{{($value->status==1)?'Hiện':'Ẩn'}}</td>
 					<!-- @if($value->type==1)
@@ -46,8 +46,8 @@
 					@else
 					<td>Tin thể thao</td>
 					@endif -->
-					<td><a href="{{ route('cat_del',['id'=>$value->id])}}" onclick="return confirm('Bạn có muốn xóa')"><i class="glyphicon glyphicon-trash"></i></a>Xóa</td>
-					<td><a href="{{ route('cat_edit',['id'=>$value->id])}}" ><i class="glyphicon glyphicon-edit"></i></a>Sửa</td>
+					<td><a href="{{ route('cat_del',['id'=>$value->id])}}" onclick="return confirm('Bạn có muốn xóa')"><i class="glyphicon glyphicon-trash"></i></a></td>
+					<td><a href="{{ route('cat_edit',['id'=>$value->id])}}" ><i class="glyphicon glyphicon-edit"></i></a></td>
 				</tr>
 				@endforeach
 			</tbody>

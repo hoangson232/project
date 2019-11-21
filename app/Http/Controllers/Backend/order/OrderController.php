@@ -21,12 +21,17 @@ class OrderController extends Main_adminController
             $ord= Order::where('name','like','%'.$req->order_search.'%')
                             ->orWhere('id',$req->order_search);
             $orders=$ord->paginate(3);
-            $order_count=$ord->count();
+            $order_count=Order::where('name','like','%'.$req->order_search.'%')
+                                ->orWhere('id',$req->order_search)
+                                ->count();
                 if (request()->date_from && request()->date_to) {
                 $ords=$ord->whereBetween('created_at',[request()->date_from,request()->date_to])
                         ->orderBy('created_at','desc');
                 $orders=$ords->paginate(3);
-                $order_count=$ords->count();
+                $order_count=Order::where('name','like','%'.$req->order_search.'%')
+                                    ->orWhere('id',$req->order_search)
+                                    ->whereBetween('created_at',[request()->date_from,request()->date_to])
+                                    ->count();
                 $date_from=request()->date_from;
                 $date_to=request()->date_to;
                 }
@@ -49,19 +54,44 @@ class OrderController extends Main_adminController
         }
         return view('backend.order.list',compact('orders','order_count','date_from','date_to','orders','req'));
     }
-     public function new_order_list()
+     public function new_order_list(Request $req)
     {   $date_from= '';
         $date_to= '';
         $orders=Order::where('status',0)->orderBy('created_at','asc')->paginate(3);
         $order_count=Order::where('status',0)->count();
+        if ($req->order_search) {
+            $ord= Order::where('status',0)
+                        ->where('name','like','%'.$req->order_search.'%')
+                        ->orWhere('id',$req->order_search);
+            $orders=$ord->paginate(3);
+            $order_count=$ord->count();
+                if (request()->date_from && request()->date_to) {
+                $ords=$ord->whereBetween('created_at',[request()->date_from,request()->date_to])
+                        ->orderBy('created_at','desc');
+                $orders=$ords->paginate(3);
+                $order_count=$ords->count();
+                $date_from=request()->date_from;
+                $date_to=request()->date_to;
+                }
+        }
+
         if (request()->date_from && request()->date_to) {
-            $ord=Order::whereBetween('created_at',[request()->date_from,request()->date_to])->where('status',0)->orderBy('created_at','desc');
+            $ord=Order::where('status',0)->whereBetween('created_at',[request()->date_from,request()->date_to])->orderBy('created_at','desc');
             $orders=$ord->paginate(3);
             $order_count=$ord->count();
             $date_from=request()->date_from;
             $date_to=request()->date_to;
+            if ($req->order_search) {
+            $ord=Order::where('name','like','%'.$req->order_search.'%')
+                        ->orWhere('id',$req->order_search)
+                        ->whereBetween('created_at',[request()->date_from,request()->date_to])
+                        ->orderBy('created_at','desc');      
+            $orders=$ord->paginate(3);
+            $order_count=$ord->count();
+            }
         }
-        return view('backend.order.list',compact('orders','order_count','date_from','date_to'));
+
+        return view('backend.order.list',compact('orders','order_count','date_from','date_to','req'));
     }
     public function order_detail($id){
     	$order=Order::find($id);

@@ -21,7 +21,7 @@
 			</div>
 		</div>
 	</div>
-	
+					
     <!--=======  End of breadcrumb area =======-->
 <!--=============================================
     =            shop page content         =
@@ -32,7 +32,18 @@
             <div class="row">
 				<div class="col-lg-12">
 					<!--=======  shop product content  =======-->
-					
+					@if(session('mess'))
+                    <div class="alert alert-success">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{session('mess')}}</strong>
+                    </div>
+                    @endif
+                    @if(session('error'))
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{session('error')}}</strong>
+					</div>
+					@endif
 					<div class="shop-product">
 						<div class="row pb-100">
 							<div class="col-lg-6 mb-md-70 mb-sm-70">
@@ -42,28 +53,36 @@
 
 									<!--=======  shop product gallery icons  =======-->
 									
-									<div class="single-product__floating-badges single-product__floating-badges--shop-product">
+									<!-- {{-- <div class="single-product__floating-badges single-product__floating-badges--shop-product">
 										<span class="hot">hot</span>
-									</div>
-
+									</div> --}} -->
+									
 
 									<div class="shop-product-rightside-icons">
+										@if(Auth::check())
 										<span class="wishlist-icon">
-											<a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="ion-android-favorite-outline"></i></a>
-										</span>
+												<a href="{{route('add_wishlist',['account_id'=>Auth::user()->id,'product_id'=>$pro->id])}}" data-tippy="Thêm vào mục ưa thích" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="ion-android-favorite-outline"></i></a>
+												</span>
+										@endif
+										
 										<span class="enlarge-icon">
 											<a class="btn-zoom-popup" href="#" data-tippy="Nhấn để xem ảnh" data-tippy-placement="left" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" ><i class="ion-android-expand"></i></a>
 										</span>
 									</div>
 									
 									<!--=======  End of shop product gallery icons  =======-->
-
+									@if($pro->sale_price >0)
+                                        <div class="single-product__floating-badges">
+                                            <span class="onsale">Sale</span>
+                                        </div>
+                                        @endif
 									<div class="shop-product__big-image-gallery-slider">
 
 										<!--=======  single image  =======-->
 										
 										<div class="single-image">
 											<img src="{{url('')}}/uploads/{{$pro->image}}" class="img-fluid" alt="">
+											
 										</div>
 										
 										<!--=======  End of single image  =======-->
@@ -93,6 +112,7 @@
 										
 										<div class="single-image">
 											<img src="{{url('')}}/uploads/{{$pro->image}}" class="img-fluid" alt="">
+											
 										</div>
 										
 										<!--=======  End of single image  =======-->
@@ -133,7 +153,7 @@
 									<div class="shop-product__price mb-30">
 										@if($pro->sale_price >0)
                                             <span class="main-price discounted">{{number_format($pro->price)}} Đ</span>
-                                            <span class="discounted-price">{{$pro->sale_price}} Đ</span>
+                                            <span class="discounted-price">{{number_format($pro->sale_price)}} Đ</span>
                                              @else 
                                             <span class="main-price">{{number_format($pro->price)}} Đ</span>
                                              @endif
@@ -152,22 +172,22 @@
 			
 									<!--=======  shop product quantity block  =======-->
 									
-									<div class="shop-product__block shop-product__block--quantity mb-40">
+									{{-- <div class="shop-product__block shop-product__block--quantity mb-40">
 										<div class="shop-product__block__title">Số lượng</div>
 										<div class="shop-product__block__value">
 											<div class="pro-qty d-inline-block mx-0 pt-0">
 												<input type="text" value="1">
 											</div>
 										</div>
-									</div>
+									</div> --}}
 									
 									<!--=======  End of shop product quantity block  =======-->
-			
+									
 									<!--=======  shop product buttons  =======-->
 									
 									<div class="shop-product__buttons mb-40">
 										@if(Auth::check())
-										<a class="lezada-button lezada-button--medium" href="{{route('add-cart',['id'=>$pro->id])}}">Thêm vào giỏ hàng</a>
+										<a class="lezada-button lezada-button--medium" href="{{route('add_cart',['id'=>$pro->id])}}">Thêm vào giỏ hàng</a>
 										@else
 										<a class="lezada-button lezada-button--medium" href="" onclick="return confirm('Bạn cần đăng nhập để mua hàng')">Thêm vào giỏ hàng</a>
 										@endif

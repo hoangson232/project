@@ -49,12 +49,12 @@
 
                             <tbody>
 
-                                @foreach ($cart as $item)
-                                    <form action="{{route('update-cart',['id'=>$item['id']])}}">
+                                @foreach ($cart as $key=>$item)
+                                    <form action="{{route('update_cart',['id'=>$item['id']])}}">
                                         
                                    
                                     <tr>
-                                    <td>{{$loop->index+1}}</td>
+                                    <td>{{ $loop->index+1 }}</td>
                                     <td class="product-thumbnail">
                                         <a href="{{route('pro_detail',['id'=>$item['id']])}}">
                                             <img src="{{url('')}}/uploads/{{$item['image']}}" class="img-fluid" alt="">
@@ -75,7 +75,7 @@
                                     <td class="total-price"><span class="price">{{number_format($item['price']*$item['quantity'])}}</span></td>
 
                                     <td class="product-remove">
-                                        <a href="{{route('delete-cart',['id'=>$item['id']])}}">
+                                        <a href="{{route('delete_cart',['id'=>$item['id']])}}">
                                             <i class="ion-android-close"></i>
                                         </a>
                                     </td>
@@ -108,7 +108,7 @@
                              <div class="col-lg-6 text-left text-lg-right">
                                 <!--=======  update cart button  =======-->
                                 
-                                <a href="{{route('delete-all')}}" class="btn btn-danger">Xóa hết</a>
+                                <a href="{{route('delete_all')}}" class="btn btn-danger">Xóa hết</a>
                                 
                                 <!--=======  End of update cart button  =======-->
                             </div>

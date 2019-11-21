@@ -206,17 +206,10 @@
               <span class="pull-right-container">
               <small class="label pull-right bg-yellow"></small>
               </span></a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Thêm mới</a></li>           
+                      
           </ul>
         </li>
-        <li>
-          <a href="{{route('upfile')}}">
-            <i class="fa fa-th"></i> <span>Filemanager</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">Hot</small>
-            </span>
-          </a>
-        </li>
+       
         
       </ul>
     </section>

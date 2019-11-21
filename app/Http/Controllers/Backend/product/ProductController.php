@@ -6,6 +6,9 @@ use App\Models\OrderDetail;
 use Illuminate\http\Request;
 use App\Models\ImgProduct;
 use App\Http\Controllers\Backend\Main_adminController;
+use App\Models\Wishlist;
+use App\Models\Comment;
+
 /**
  * 
  */
@@ -34,8 +37,8 @@ class ProductController extends Main_adminController
 		'slug'=>'required',
 		'price'=>'required|numeric|not_in:0|min:0',
 		'sale_price'=>'numeric|min:0|lt:price',
-		'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-		'images'=>'required',
+		'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+		// 'images'=>'required',
 		'images.*'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
 		],
 		[
@@ -47,11 +50,11 @@ class ProductController extends Main_adminController
 		'price.not_in'=>'Giá phải >0',
 		'sale_price.lt'=>'Giá khuyến mãi phải < giá gốc',
 		'slug.required'=>'Slug không được để rỗng',
-		'image.required'=>'Phần ảnh không được rỗng',
+		// 'image.required'=>'Phần ảnh không được rỗng',
 		'image.image' =>'Tệp tải lên phải là ảnh',
     	'image.mimes' =>'Định dạng ảnh là jpeg,jpg,png,gif hoặc svg',
     	'image.max' =>'Kích thước ảnh tối đa 2048kb',
-		'images.required'=>'Phần nhóm ảnh không được rỗng',
+		// 'images.required'=>'Phần nhóm ảnh không được rỗng',
 		'images.*.mimes'=>'Định dạng ảnh là jpeg,jpg,png,gif hoặc svg',
 		'images.*.image'=>'Các tệp tải lên phải là ảnh',
 		'images.*.max' =>'Kích thước ảnh tối đa 2048kb',
@@ -98,8 +101,10 @@ class ProductController extends Main_adminController
 	public function delete($id){
 		$order=OrderDetail::where('product_id',$id)->count();
 		$comment=Comment::where('product_id',$id)->count();
+		
 		if ($order == 0 && $comment==0) {
 		ImgProduct::where('product_id',$id)->delete();
+		Wishlist::where('product_id',$id)->delete();
 		Product::find($id)->delete();	
 		return redirect()->back()->with('mess','Xóa thành công');//quay lại trang trước đó
 		}else{

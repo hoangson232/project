@@ -4,6 +4,8 @@ use App\Models\Account;
 use App\Models\Order;
 use Illuminate\http\Request;
 use App\Http\Controllers\Backend\Main_adminController;
+use App\Models\Comment;
+use App\Models\Wishlist;
 
 /**
  * 
@@ -112,6 +114,7 @@ class AccountController extends Main_adminController
 		$count=Order::where('account_id',$id)->count();
 		if($count==0){
 			$comment_delete=Comment::where('account_id',$id)->delete();
+			$wishlist_delete=Wishlist::where('account_id',$id)->delete();
 			$delete=Account::find($id)->delete();
 			return redirect()->back()->with('mess','Xóa tài khoản thành công!');
 		}else{

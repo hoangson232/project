@@ -30,19 +30,21 @@
 		<table class="table table-hover">
 			<thead>
 				<tr>
+					<th>STT</th>
 					<th>ID</th>
-					<th>Name</th>
+					<th>Tên</th>
 					<th>Email</th>
-					<th>Phone</th>
-					<th>Address</th>
+					<th>Điện thoại</th>
+					<th>Địa chỉ</th>
 					
 					<th></th>
 					<th></th>
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($account as $value)
+				@foreach($account as $key => $value)
 				<tr>
+					<td>{{ $account->firstItem() + $key }}</td>
 					<td>{{$value->id}}</td>
 					<td>{{$value->name}}</td>
 					<td>{{$value->email}}</td>

@@ -32,14 +32,14 @@
         ]'
         >
 
-
-            <!--=======  single slider  =======-->
+            @foreach ($bannernew as $item)
+                 <!--=======  single slider  =======-->
             <div class="decor-single-slider">
                 <div class="decor-single-slider-content">
                 <!--=======  slider image  =======-->
                 
                 <div class="slider-image">
-                    <img src="{{url('')}}/public/assets/images/slider/banner-carousel-1.jpg" class="img-fluid" alt="">
+                <img src="{{url('')}}/uploads/banner/{{$item->image}}" class="img-fluid" alt="" >
 
                 </div>
                 
@@ -48,16 +48,15 @@
                 <!--=======  slider content  =======-->
                 
                 <div class="slider-content">
-                    <div class="color-title color-title--blue">
-                        Đồ lưu niệm
-                    </div>
+                    {{-- <div class="color-title color-title--blue">
+                        
+                    </div> --}}
 
                     <div class="main-title">
-                        Lọ xay tiêu, <br>
-                        Loại nhỏ
+                        {{$item->content}}
                     </div>
 
-                    <a href="shop-left-sidebar.html" class="lezada-button lezada-button--medium">mua ngay</a>
+                    {{-- <a href="shop-left-sidebar.html" class="lezada-button lezada-button--medium">mua ngay</a> --}}
                 </div>
                 
                 <!--=======  End of slider content  =======-->
@@ -66,70 +65,9 @@
             
             <!--=======  End of single slider  =======-->
 
-            <!--=======  single slider  =======-->
-            <div class="decor-single-slider">
-                <div class="decor-single-slider-content">
-                <!--=======  slider image  =======-->
-                
-                <div class="slider-image">
-                    <img src="{{url('')}}/public/assets/images/slider/banner-carousel-2.jpg" class="img-fluid" alt="">
+            @endforeach
+           
 
-                </div>
-                
-                <!--=======  End of slider image  =======-->
-
-                <!--=======  slider content  =======-->
-                
-                <div class="slider-content">
-                    <div class="color-title color-title--brown">
-                        Đồ handmade
-                    </div>
-
-                    <div class="main-title">
-                       Thớt, <br>
-                       Loại lớn
-                    </div>
-
-                    <a href="shop-left-sidebar.html" class="lezada-button lezada-button--medium">mua ngay</a>
-                </div>
-                
-                <!--=======  End of slider content  =======-->
-                </div>
-            </div>
-            
-            <!--=======  End of single slider  =======-->
-
-            <!--=======  single slider  =======-->
-            <div class="decor-single-slider">
-                <div class="decor-single-slider-content">
-                    <!--=======  slider image  =======-->
-                    
-                    <div class="slider-image">
-                        <img src="{{url('')}}/public/assets/images/slider/banner-carousel-3.jpg" class="img-fluid" alt="">
-
-                    </div>
-                    
-                    <!--=======  End of slider image  =======-->
-
-                    <!--=======  slider content  =======-->
-                    
-                    <div class="slider-content">
-                        <div class="color-title color-title--green">
-                            Đồ trang trí
-                        </div>
-
-                        <div class="main-title">
-                            Đèn treo trần <br>
-                            
-                        </div>
-
-                        <a href="shop-left-sidebar.html" class="lezada-button lezada-button--medium">mua ngay</a>
-                    </div>
-                    
-                    <!--=======  End of slider content  =======-->
-                </div>
-            </div>
-            <!--=======  End of single slider  =======-->
 
 
         </div>
@@ -159,10 +97,16 @@
                     </div>
                     
                     <!--=======  End of tab product navigation  =======-->
-                    @if(session('mes'))
+                    @if(session('mess'))
                     <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                        <strong>{{session('mes')}}</strong>
+                        <strong>{{session('mess')}}</strong>
+                    </div>
+                    @endif
+                    @if(session('error'))
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>{{session('error')}}</strong>
                     </div>
                     @endif
 
@@ -190,7 +134,11 @@
                                         @endif
                                         
                                         <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            @if (Auth::check())
+                                            <span class="wishlist"><a href="{{route('add_wishlist',['account_id'=>Auth::user()->id,'product_id'=>$value->id])}}" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            @else
+                                            <span class="wishlist" onclick="return alert('Bạn phải đăng nhập để sử dụng tính năng này')"><a href="" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            @endif
                                             <span class="quickview"><a class="" href="{{route('pro_detail',['slug'=>$value->slug])}}" data-tippy="Xem chi tiết" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-search-strong"></i></a></span>
                                         </div>
                                     </div>
@@ -203,7 +151,7 @@
                                         <div class="title">
                                             <h3> <a href="shop-product-basic.html">{{$value->name}}</a></h3>
                                             @if(Auth::check())
-                                            <a href="{{route('add-cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
+                                            <a href="{{route('add_cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
                                             @else
                                             <a href="" onclick="return confirm('Bạn cần đăng nhập để mua hàng')">Thêm vào giỏ hàng</a>
                                             @endif
@@ -249,7 +197,11 @@
                                         @endif
                                         
                                         <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            @if (Auth::check())
+                                            <span class="wishlist"><a href="{{route('add_wishlist',['account_id'=>Auth::user()->id,'product_id'=>$value->id])}}" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            @else
+                                            <span class="wishlist" onclick="return alert('Bạn phải đăng nhập để sử dụng tính năng này')"><a href="" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                            @endif
                                             <span class="quickview"><a class="" href="{{route('pro_detail',['slug'=>$value->slug])}}" data-tippy="Xem chi tiết" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-search-strong"></i></a></span>
                                         </div>
                                     </div>
@@ -262,7 +214,7 @@
                                         <div class="title">
                                             <h3> <a href="shop-product-basic.html">{{$value->name}}</a></h3>
                                             @if(Auth::check())
-                                            <a href="{{route('add-cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
+                                            <a href="{{route('add_cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
                                             @else
                                             <a href="" onclick="return confirm('Bạn cần đăng nhập để mua hàng')">Thêm vào giỏ hàng</a>
                                             @endif
@@ -306,7 +258,11 @@
                                         </div>
                                         @endif
                                         <div class="single-product__floating-icons">
-                                            <span class="wishlist"><a href="#" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                                @if (Auth::check())
+                                                <span class="wishlist"><a href="{{route('add_wishlist',['account_id'=>Auth::user()->id,'product_id'=>$value->id])}}" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                                @else
+                                                <span class="wishlist" onclick="return alert('Bạn phải đăng nhập để sử dụng tính năng này')"><a href="" data-tippy="Thêm vào mục ưa thích" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
+                                                @endif
                                             <span class="quickview"><a class="" href="{{route('pro_detail',['slug'=>$value->slug])}}" data-tippy="Xem chi tiết" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-ios-search-strong"></i></a></span>
                                         </div>
                                     </div>
@@ -319,7 +275,7 @@
                                         <div class="title">
                                             <h3> <a href="shop-product-basic.html">{{$value->name}}</a></h3>
                                             @if(Auth::check())
-                                            <a href="{{route('add-cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
+                                            <a href="{{route('add_cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
                                             @else
                                             <a href="" onclick="return confirm('Bạn cần đăng nhập để mua hàng')">Thêm vào giỏ hàng</a>
                                             @endif
@@ -355,50 +311,6 @@
        <!--=============================================
     =            footer banner section area        =
     =============================================-->
-    
-    <div class="footer-banner-section-area mb-100 mb-md-80 mb-sm-80">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8 offset-lg-2">
-                    <!--=======  ad section  =======-->
-                    
-                    <div class="footer-banner-section text-center">
-                        <!--=======  ad section image  =======-->
-                        
-                        <div class="footer-banner-section-image mb-35">
-                            <img src="{{url('')}}/public/assets/images/banners/cabinet.jpg" class="img-fluid" alt="">
-                        </div>
-                        
-                        <!--=======  End of ad section image  =======-->
-
-                        <!--=======  ad tags  =======-->
-                        
-                        <div class="footer-banner-tags mb-35">
-                            <ul>
-                                <li><a href="#">#mùa hè</a></li>
-                                <li><a href="#">#kệ</a></li>
-                                <li><a href="#">#giảm giá</a></li>
-                            </ul>
-                        </div>
-                        
-                        <!--=======  End of ad tags  =======-->
-
-                        <!--=======  ad-content  =======-->
-                        
-                        <div class="footer-banner-content">
-                            <h2 class="mb-30">ĐỢT GIẢM GIÁ CUỐI CÙNG LÊN ĐẾN 40% CHO CÁC MẶT HÀNG. ĐỪNG BỎ LỠ!!!!!!!</h2>
-                            <a href="shop-left-sidebar.html" class="lezada-button lezada-button--medium">MUA NGAY</a>
-                        </div>
-                        
-                        <!--=======  End of ad-content  =======-->
-                    </div>
-                    
-                    <!--=======  End of ad section  =======-->
-
-                </div>
-            </div>
-        </div>
-    </div>
     
     <!--=====  End of ad section area ======-->
 @stop

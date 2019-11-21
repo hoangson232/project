@@ -7,7 +7,8 @@
 	<link rel="stylesheet" href="">
 </head>
 <body>
-	<h1>Cám ơn quý khách đã đặt hàng của Lazada</h1>
+	<h1>Cám ơn {{$name}} đã đặt hàng của Lazada</h1>
+	<h3>Mã đơn hàng: {{$id}}</h3>
 	<table>
 		<thead>
 			<tr>
@@ -20,13 +21,15 @@
 		<tbody>
 			@foreach($carts->items as $value)
 			<tr>
-				<td>1</td>
+				<td>{{$loop->index+1}}</td>
 				<td>{{$value['name']}}</td>
 				<td>{{$value['quantity']}}</td>
-				<td>{{$value['price']}}</td>
+				<td>{{number_format($value['price'])}} Đ</td>
 			</tr>
 			@endforeach
+	
 		</tbody>
 	</table>
+	<h3>Tổng tiền: {{number_format($total_price)}} Đ</h3>
 </body>
 </html>

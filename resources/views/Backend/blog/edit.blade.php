@@ -8,19 +8,31 @@
 			<div class="form-group">
 				<label class="" for="">name</label>
 				<input type="text" class="form-control" id="title" placeholder="Tên blog" name="name" onkeyup="ChangeToSlug()" value="{{$blogs->name}}">
+				@if($errors->has('name'))
+				{{$errors->first('name')}}
+				@endif
 			</div>
 			<div class="form-group">
 				<label class="" for="">slug</label>
 				<input type="text" class="form-control" id="slug" placeholder="Tên banner" name="slug" value="{{$blogs->slug}}">
+				@if($errors->has('slug'))
+				{{$errors->first('slug')}}
+				@endif
 			</div>
 			<div class="form-group">
 				<label class="" for="">Content</label>
 					<textarea name="content" class="form-control ckeditor" placeholder="nội dung" id="content">{{$blogs->content}}</textarea>
-			</div>
+					@if($errors->has('content'))
+					{{$errors->first('content')}}
+					@endif
+				</div>
 			<div class="form-group">
 					<label class="" for="">Chọn ảnh</label>
 					<input type="file" class="" id="" placeholder="" name="image">
 					<img src="{{url('')}}/uploads/blog/{{$blogs->image}}" width="100px">
+					@if($errors->has('image'))
+					{{$errors->first('image')}}
+					@endif
 			</div>
 			<div class="form-group">
 					<label class="" for="">Trạng Thái</label>

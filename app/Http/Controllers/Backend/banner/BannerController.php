@@ -17,6 +17,19 @@
 					return view('backend.banner.add');
 				}
 				public function post_add(Request $req){
+					$this->validate($req,[
+						'name'=>'required',
+						'content'=>'required',
+						'image'=>'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+						],
+						[
+						'name.required'=>'Tên sản phẩm không được để rỗng',
+						'content.required'=>'Slug không được để rỗng',
+						'image.required'=>'Phần ảnh không được rỗng',
+						'image.image' =>'Tệp tải lên phải là ảnh',
+						'image.mimes' =>'Định dạng ảnh là jpeg,jpg,png,gif hoặc svg',
+						'image.max' =>'Kích thước ảnh tối đa 2048kb',
+						]);
 						if($req ->hasFile('image')){
 							$file = $req ->image->getClientOriginalName();
 							$req->image->move('uploads/banner/',$file);
@@ -37,6 +50,19 @@
 					return view('backend.banner.edit',compact('banners'));
 				}
 				public function edit_post(Request $req,$id){
+					$this->validate($req,[
+						'name'=>'required',
+						'content'=>'required',
+						'image'=>'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+						],
+						[
+						'name.required'=>'Tên sản phẩm không được để rỗng',
+						'content.required'=>'Slug không được để rỗng',
+						// 'image.required'=>'Phần ảnh không được rỗng',
+						'image.image' =>'Tệp tải lên phải là ảnh',
+						'image.mimes' =>'Định dạng ảnh là jpeg,jpg,png,gif hoặc svg',
+						'image.max' =>'Kích thước ảnh tối đa 2048kb',
+						]);
 						if($req ->hasFile('image')){
 							$file = $req ->image->getClientOriginalName();
 							$req->image->move('uploads/banner/',$file);

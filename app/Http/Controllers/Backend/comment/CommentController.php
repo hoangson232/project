@@ -13,10 +13,11 @@ use App\Http\Controllers\Backend\Main_adminController;
  */
 class CommentController extends Main_adminController
 {
-	public function index(){
+	public function index(Request $req){
 		$comments=Comment::orderBy('created_at','desc');
 		$comment=$comments->paginate(5);
 		$comment_count=$comments->count();
+		
 		return view('Backend.comment.list',compact('comment','comment_count'));
 	}
 	public function delete($id){

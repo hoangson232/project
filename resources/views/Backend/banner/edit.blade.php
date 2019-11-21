@@ -8,15 +8,24 @@
 			<div class="form-group">
 				<label class="" for="">Tên Banner</label>
 				<input type="text" class="form-control" id="" placeholder="Tên banner" name="name" value="{{$banners->name}}">
+				@if($errors->has('name'))
+				{{$errors->first('name')}}
+				@endif
 			</div>
 			<div class="form-group">
 				<label class="" for="">nội dung</label>
 					<textarea name="content" class="form-control ckeditor" placeholder="content" id="content">{{$banners->content}}</textarea>
-			</div>
+					@if($errors->has('content'))
+					{{$errors->first('content')}}
+					@endif
+				</div>
 			<div class="form-group">
-				<label class="" for="">ảnh</label>
+				<label class="" for="">Ảnh</label>
 				<input type="file" name="image" value="{{$banners->image}}">
 				<img src="{{url('')}}/uploads/banner/{{$banners->image}}" width="100px">
+				@if($errors->has('image'))
+				{{$errors->first('image')}}
+				@endif
 			</div>
 			<div class="form-group">
 					<label class="" for="">Trạng Thái</label>
@@ -28,7 +37,7 @@
 		
 			
 		
-			<button type="submit" class="btn btn-primary">Cập Nhập</button>
+			<button type="submit" class="btn btn-primary">Cập nhật</button>
 		</form>
 		</div>
 </div>

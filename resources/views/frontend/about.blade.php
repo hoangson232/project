@@ -126,7 +126,7 @@
 					
 					<div class="box-layout-map-container">
 						<div class="google-map" id="google-map-one">
-							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7446.373187261413!2d105.79173082274284!3d21.06520840579124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aada263c5f0b%3A0xed4eeedccd080387!2zS2h1IE5nb-G6oWkgZ2lhbyDEkW_DoG4sIFh1w6JuIFThuqNvLCBU4burIExpw6ptLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1573872030831!5m2!1svi!2s" width="1100" height="650" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7446.373187261413!2d105.79173082274284!3d21.06520840579124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135aada263c5f0b%3A0xed4eeedccd080387!2zS2h1IE5nb-G6oWkgZ2lhbyDEkW_DoG4sIFh1w6JuIFThuqNvLCBU4burIExpw6ptLCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1573872030831!5m2!1svi!2s" width="1200" height="500" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
 						</div>
 					</div>
 					

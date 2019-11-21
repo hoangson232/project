@@ -78,9 +78,11 @@
                                             <img src="{{url('')}}/uploads/{{$value->image}}" class="img-fluid" alt="" width="100px">
                                         </a>
                 
+                                        @if($value->sale_price >0)
                                         <div class="single-product__floating-badges">
-                                            <span class="onsale">-25%</span>
+                                            <span class="onsale">Sale</span>
                                         </div>
+                                        @endif
                                         
                                         <div class="single-product__floating-icons">
                                             <span class="wishlist"><a href="#" data-tippy="Add to wishlist" data-tippy-inertia="true" data-tippy-animation="shift-away" data-tippy-delay="50" data-tippy-arrow="true" data-tippy-theme = "sharpborder" data-tippy-placement = "left" ><i class="ion-android-favorite-outline"></i></a></span>
@@ -96,7 +98,7 @@
                                     <div class="single-product__content">
                                         <div class="title">
                                             <h3> <a href="shop-product-basic.html">{{$value->name}}</a></h3>
-                                            <a href="{{route('add-cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
+                                            <a href="{{route('add_cart',['id'=>$value->id])}}">Thêm vào giỏ hàng</a>
                                         </div>
                                         <div class="price">
                                             @if($value->sale_price >0)

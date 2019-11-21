@@ -26,16 +26,16 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($blog as $log)
+							@foreach($blog as $key=> $log)
 							<tr>
-								<td>{{$loop->index+1}}</td>
+								<td>{{ $blog->firstItem() + $key }}</td>
 								<td>{{$log->name}}</td>
 								
 								<td><img src="{{url('')}}/uploads/blog/{{$log->image}}" width="100px"></td>
 								<td>{{$log->content}}</td>
 								<td>{{$log->short_content}}</td>
 								<td>{{($log->status)==1?'Hiện':'Ẩn'}}</td>
-								<td>{{$log->created_at}}</td>
+								<td>{{date_format($log->created_at,"d/m/Y H:i:s")}}</td>
 								<td><a href="{{route('edit-blog',['id'=>$log->id])}}" class="btn btn-success">Sửa</a></td>
 							<td><a href="{{route('delete-blog',['id'=>$log->id])}}" class="btn btn-danger" onclick="return confirm('bạn có chắc muốn xóa không');">Xóa</a></td>
 							</tr>

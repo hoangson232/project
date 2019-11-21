@@ -13,9 +13,9 @@
 					<table class="table table-hover">
 						<thead>
 							<tr>
-								<th>stt</th>
+								<th>STT</th>
 								<th>Tên</th>
-								<th>ảnh</th>
+								<th>Ảnh</th>
 								<th>Nội Dung</th>
 								<th>Ngày Tạo</th>
 								<th>Trạng Thái</th>
@@ -24,20 +24,20 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach($banner as $bn)
+							@foreach($banner as $key=> $bn)
 							<tr>
-								<td>{{$loop->index+1}}</td>
+								<td>{{ $banner->firstItem() + $key }}</td>
 								<td>{{$bn->name}}</td>
 								<td><img src="{{url('')}}/uploads/banner/{{$bn->image}}" width="100px"></td>
 								<td>{{$bn->content}}</td>
-								<td>{{date('d/m/Y H:i',strtotime($bn->created_at))}}</td>
+								<td>{{date_format($bn->created_at,"d/m/Y H:i:s")}}</td>
 								@if($bn->status==0)
 								<td>ẩn</td>
 								@else
 								<td>hiện</td>
 								@endif
 								<td><a href="{{route('edit-banner',['id'=>$bn->id])}}" class="btn btn-success">Sửa</a></td>
-							<td><a href="{{route('delete-banner',['id'=>$bn->id])}}" class="btn btn-danger" onclick="return confirm('bạn có chắc muốn xóa không');">xóa</a></td>
+							<td><a href="{{route('delete-banner',['id'=>$bn->id])}}" class="btn btn-danger" onclick="return confirm('bạn có chắc muốn xóa không');">Xóa</a></td>
 							</tr>
 							@endforeach
 						</tbody>

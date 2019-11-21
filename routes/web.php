@@ -11,23 +11,17 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('index');
-// });
-// Route::get('test','DemoController@index')->name('test');
-// Route::get('home','DemoController@home')->name('home');
-// Route::get('about','DemoController@about')->name('about');
-// Route::get('product/{id}/{name}','DemoController@product')->name('product');
+
 Route::get('/','Frontend\HomeController@index')->name('home');
 Route::group(['prefix'=>'frontend','namespace'=>'Frontend'],function(){
 	Route::get('pro_detail/{slug}','HomeController@pro_detail')->name('pro_detail');
 	Route::post('pro_detail/{slug}','HomeController@add_comment')->name('add_comment');
 
-	Route::get('banner','HomeController@bananer')->name('banner');
-	Route::get('dat-hang-thanh-cong','HomeController@comple')->name('comples');
-	Route::get('lien-he','HomeController@lien_he')->name('lien-he');
+	
+	Route::get('success_order','HomeController@complete')->name('complete');
+	Route::get('about','HomeController@about')->name('about');
 	Route::get('blog','HomeController@blog_index')->name('blog');
-	Route::get('blog-detail/{slug}','HomeController@blog_detail')->name('blog-deta');
+	Route::get('blog-detail/{slug}','HomeController@blog_detail')->name('blog-detail');
 
 
 	Route::get('shop/{slug}','HomeController@shop')->name('shop');
@@ -47,14 +41,25 @@ Route::group(['prefix'=>'frontend','namespace'=>'Frontend'],function(){
 });
 
 
-
+//phần giỏ hàng
 
 Route::group(['prefix'=>'cart','namespace'=>'Frontend'],function(){
-	Route::get('show-cart','CartController@show')->name('show-cart');
-	Route::get('add-cart/{id}','CartController@add')->name('add-cart');
-	Route::get('update-cart/{id}','CartController@update')->name('update-cart');
-	Route::get('delete-cart/{id}','CartController@delete')->name('delete-cart');
-	Route::get('delete-all','CartController@deleteAll')->name('delete-all');
+	Route::get('show-cart','CartController@show')->name('show_cart');
+	Route::get('add-cart/{id}','CartController@add')->name('add_cart');
+	Route::get('update-cart/{id}','CartController@update')->name('update_cart');
+	Route::get('delete-cart/{id}','CartController@delete')->name('delete_cart');
+	Route::get('delete-all','CartController@deleteAll')->name('delete_all');
+	Route::get('cart_history','CartController@cart_history')->name('cart_history');
+	Route::get('history_detail{id}','CartController@history_detail')->name('history_detail');
+
+});
+
+//phần mục ưa thích
+Route::group(['prefix'=>'wishlist','namespace'=>'Frontend'],function(){
+	Route::get('show-wishlist','WishlistController@show')->name('show-wishlist');
+	Route::get('add-wishlist/{account_id}/{product_id}','WishlistController@add')->name('add_wishlist');
+	Route::get('delete-wishlist/{id}','WishlistController@delete')->name('delete_wishlist');
+	Route::get('delete-all','WishlistController@deleteAll')->name('delete_all');
 
 });
 
@@ -63,8 +68,6 @@ Route::group(['prefix'=>'cart','namespace'=>'Frontend'],function(){
 Route::group(['prefix'=>'admin','namespace'=>'Backend','middleware'=>'auth'],function(){
 		Route::get('/','Home_adminController@index')->name('admin');
 		Route::get('/logout','AdminController@logout')->name('user_logout');
-		Route::get('upfile','FileController@index')->name('upfile');
-		Route::post('upload','FileController@upload')->name('upload');
 		Route::get('change_pass','AdminController@change_pass')->name('user_change_pass');
 		Route::post('change_pass','AdminController@post_pass')->name('user_change_pass');
 
@@ -78,11 +81,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Backend','middleware'=>'auth'],fun
 
 });
 
+//phần đăng nhập lấy lại mật khẩu Admin
 Route::get('admin/login','Backend\AdminController@login')->name('login');
 Route::post('admin/login','Backend\AdminController@post_login')->name('login');
 Route::get('admin/forgot_password','Backend\AdminController@showResetForm')->name('forgot_password');
 Route::post('admin/forgot_password','Backend\AdminController@postResetForm')->name('post_forgot_password');
-
 Route::get('admin/reset/{token}','Backend\AdminController@reset')->name('reset-pass');
 Route::post('admin/reset/{token}','Backend\AdminController@post_reset')->name('post-reset-pass');
 

@@ -1,5 +1,5 @@
 @extends('master')
-@section('titles','Blog LEZADA')
+@section('titles','Đặt hàng thành công')
 @section('main')
 	<div class="">
 			

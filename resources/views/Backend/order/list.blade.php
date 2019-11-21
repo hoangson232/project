@@ -23,16 +23,16 @@
 		</h3>
 	</div>
 	<div class="panel-body">
-		<div>
+		{{-- <div>
 					<h4>Đã tìm thấy {{$order_count}} đơn hàng
-					@if($date_from !='' && $date_to!='')
+					@if($date_from !='' && $date_to !='')
 					<span>từ ngày {{$date_from}} đến ngày {{$date_to}}</span>
 					@endif
 					@if($req->order_search !='')
 					<span>có khách hàng có mã đơn/tên là "{{$req->order_search}}"</span>
 					@endif
 					</h4>
-				</div>
+				</div> --}}
 		<div class="table-responsive">
 		<table class="table table-hover">
 			<thead>
@@ -48,13 +48,13 @@
 				</tr>
 			</thead>
 			<tbody>
-				@foreach($orders as $value)
+				@foreach($orders as $key=> $value)
 				<tr>
-					<td>{{$loop->index+1}}</td>
+					<td> {{ $orders->firstItem() + $key }}</td>
 					<td>{{$value->id}}</td>
 					<td>{{$value->us->name}}</td>
-					<td>{{$value->created_at}}</td>
-					<td>{{$value->total_price}} VND</td>
+					<td>{{date_format($value->created_at,"d/m/Y H:i:s")}}</td>
+					<td>{{number_format($value->total_price)}} VND</td>
 					@if($value->status==1)
 					<td>Đã duyệt</td>
 					@elseif($value->status==2)
@@ -71,7 +71,8 @@
 			</tbody>
 		</table>
 		<div class="clearfix">
-			{{$orders->appends(request()->only('search'))->links()}}
+			
+			{{$orders->appends(request()->all())->links()}}
 		</div>
 	</div>
 	</div>

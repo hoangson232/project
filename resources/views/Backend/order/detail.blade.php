@@ -50,10 +50,10 @@
 							<thead>
 								<tr>
 									<th>STT</th>
-									<th>Name</th>
-									<th>Image</th>
-									<th>Quantity</th>
-									<th>Price</th>
+									<th>Tên sản phẩm</th>
+									<th>Hình ảnh</th>
+									<th>Số lượng</th>
+									<th>Đơn giá</th>
 								</tr>
 							</thead>
 							<tbody>

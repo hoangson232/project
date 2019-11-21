@@ -49,8 +49,8 @@
                                         <img src="{{url('')}}/uploads/blog/{{$bl->image}}" class="img-fluid" alt="">
                                     </div>
                                     <div class="content">
-                                        <h3 class="widget-post-title"><a href="{{route('blog-deta',['slug'=>$bl->slug])}}">{{$bl->name}}</a></h3>
-                                        <p class="widget-post-date">{{$bl->created_at}}</p>
+                                        <h3 class="widget-post-title"><a href="{{route('blog-detail',['slug'=>$bl->slug])}}">{{$bl->name}}</a></h3>
+                                        <p class="widget-post-date">{{date_format($bl->created_at,"d/m/Y H:i:s")}}</p>
                                     </div>
                                 </div>
                                 @endforeach
@@ -115,7 +115,7 @@
                                         </div>
                                         <div class="post-date mb-0 pl-30">
                                             <i class="ion-android-calendar"></i>
-                                            <a href="blog-standard-left-sidebar.html">{{$blogd->created_at}}</a>
+                                            <a href="blog-standard-left-sidebar.html">{{date_format($blogd->created_at,"d/m/Y H:i:s")}}</a>
                                         </div>
 										
                                     </div>

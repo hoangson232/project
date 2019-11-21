@@ -88,7 +88,7 @@
                                 <!--=======  image  =======-->
                                 
                                 <div class="">
-                                    <a href="{{route('blog-deta',['slug'=>$blogg->slug])}}">
+                                    <a href="{{route('blog-detail',['slug'=>$blogg->slug])}}">
                                         <img src="{{url('')}}/uploads/blog/{{$blogg->image}}" class="img-fluid" alt="" width="150px">
                                     </a>
                                 </div>
@@ -100,11 +100,11 @@
                                 <div class="single-slider-post__content single-slider-post--list__content">
                                     <div class="post-date">
                                         <i class="ion-android-calendar"></i>
-                                        <a href="{{route('blog-deta',['slug'=>$blogg->slug])}}">{{$blogg->created_at}}</a>
+                                        <a href="{{route('blog-detail',['slug'=>$blogg->slug])}}">{{$blogg->created_at}}</a>
                                     </div>
-                                    <h2 class="post-title"><a href="{{route('blog-deta',['slug'=>$blogg->slug])}}">{{$blogg->name}}</a></h2>
-                                    <p><a href="{{route('blog-deta',['slug'=>$blogg->slug])}}">{{$blogg->short_content}}</a></p>
-                                    <a href="{{route('blog-deta',['slug'=>$blogg->slug])}}" class="blog-readmore-btn">Đọc thêm</a>
+                                    <h2 class="post-title"><a href="{{route('blog-detail',['slug'=>$blogg->slug])}}">{{$blogg->name}}</a></h2>
+                                    <p><a href="{{route('blog-detail',['slug'=>$blogg->slug])}}">{{$blogg->short_content}}</a></p>
+                                    <a href="{{route('blog-detail',['slug'=>$blogg->slug])}}" class="blog-readmore-btn">Đọc thêm</a>
                                 </div>
                                 
                                 <!--=======  End of content  =======-->

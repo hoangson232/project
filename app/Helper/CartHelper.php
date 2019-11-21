@@ -23,7 +23,7 @@ class CartHelper
 			'id'=>$product->id,
 			'name'=>$product->name,
 			'image'=>$product->image,
-			'price'=>$product->sale_price ? $product->sale_price : $product->price,
+			'price'=>$product->sale_price>0 ? $product->sale_price : $product->price,
 			'quantity'=> $quantity
 
 		];
