@@ -23,7 +23,7 @@
 		</h3>
 	</div>
 	<div class="panel-body">
-		{{-- <div>
+		<div>
 					<h4>Đã tìm thấy {{$order_count}} đơn hàng
 					@if($date_from !='' && $date_to !='')
 					<span>từ ngày {{$date_from}} đến ngày {{$date_to}}</span>
@@ -32,7 +32,7 @@
 					<span>có khách hàng có mã đơn/tên là "{{$req->order_search}}"</span>
 					@endif
 					</h4>
-				</div> --}}
+				</div>
 		<div class="table-responsive">
 		<table class="table table-hover">
 			<thead>
@@ -50,7 +50,7 @@
 			<tbody>
 				@foreach($orders as $key=> $value)
 				<tr>
-					<td> {{ $orders->firstItem() + $key }}</td>
+					<td> {{ $loop->index+1}}</td>
 					<td>{{$value->id}}</td>
 					<td>{{$value->us->name}}</td>
 					<td>{{date_format($value->created_at,"d/m/Y H:i:s")}}</td>
@@ -70,10 +70,10 @@
 				@endforeach
 			</tbody>
 		</table>
-		<div class="clearfix">
+		{{-- <div class="clearfix">
 			
 			{{$orders->appends(request()->all())->links()}}
-		</div>
+		</div> --}}
 	</div>
 	</div>
 </div>
